@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wentoura Holidays - Your Happy Place</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+        }
+
+        .menu-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-toggle i {
+            color: #000;
+            font-size: 24px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .get-in-touch {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .get-in-touch:hover {
+            background: #f0f0f0;
+        }
+
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            transition: background-image 0.8s ease-in-out;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            padding: 0 20px;
+            position: relative;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 8rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            font-family: 'Brush Script MT', cursive;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-description {
+            font-size: 1.8rem;
+            font-weight: 300;
+            line-height: 1.4;
+            margin-top: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-description span {
+            display: block;
+            margin-top: 15px;
+        }
+
+        .location {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        .footer-text {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        .social-icons {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .portfolio-section {
+            padding: 0;
+            position: relative;
+            margin-top: -250px;
+            z-index: 100;
+        }
+
+        .portfolio-carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 50px 5%;
+            position: relative;
+            min-height: 500px;
+        }
+
+        .carousel-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .carousel-item.center {
+            width: 400px;
+            height: 500px;
+            transform: translateY(-30px) scale(1);
+            z-index: 3;
+        }
+
+        .carousel-item.left {
+            width: 300px;
+            height: 400px;
+            transform: translateY(20px) translateX(30px) rotate(-8deg);
+            z-index: 2;
+            opacity: 0.8;
+        }
+
+        .carousel-item.right {
+            width: 300px;
+            height: 400px;
+            transform: translateY(20px) translateX(-30px) rotate(8deg);
+            z-index: 2;
+            opacity: 0.8;
+        }
+
+        .carousel-item.hidden {
+            width: 250px;
+            height: 350px;
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .carousel-item:hover:not(.center) {
+            transform: translateY(15px) scale(1.05);
+            opacity: 1;
+        }
+
+        .carousel-item.left:hover {
+            transform: translateY(15px) translateX(25px) rotate(-5deg) scale(1.05);
+        }
+
+        .carousel-item.right:hover {
+            transform: translateY(15px) translateX(-25px) rotate(5deg) scale(1.05);
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s ease;
+        }
+
+        .carousel-item:hover .carousel-image {
+            transform: scale(1.05);
+        }
+
+        .carousel-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 30px;
+            transform: translateY(100%);
+            transition: all 0.4s ease;
+        }
+
+        .carousel-item.center .carousel-overlay {
+            transform: translateY(0);
+        }
+
+        .carousel-item:hover .carousel-overlay {
+            transform: translateY(0);
+        }
+
+        .carousel-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .carousel-category {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #fff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-arrow:hover {
+            transform: scale(1.1);
+            background: #f0f0f0;
+        }
+
+        .nav-arrow i {
+            color: #000;
+            font-size: 20px;
+        }
+
+        .adventure-section {
+            padding: 150px 5% 100px;
+            background: #ffffff;
+        }
+
+        .adventure-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .adventure-image {
+            flex: 1;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80') no-repeat center center;
+            background-size: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .adventure-content {
+            flex: 1;
+        }
+
+        .adventure-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #000;
+        }
+
+        .adventure-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .creative-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 200px;
+            height: 200px;
+            background: #cf2c2c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(45deg);
+            border: 2px solid #fff;
+        }
+
+        .badge-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 1rem;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            transform: rotate(280deg);
+            color: #f7f1f1;
+        }
+
+        .full-image-section {
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .full-image-container {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .full-image {
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-description {
+            max-width: 800px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #000;
+            padding: 50px 5%;
+        }
+
+        .stories-section {
+            padding: 100px 5%;
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stories-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .story-item {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .story-item:nth-child(1) {
+            transform: rotate(-15deg) translateY(20px) translateX(-30px);
+        }
+
+        .story-item:nth-child(2) {
+            transform: rotate(10deg) translateY(-10px) translateX(20px);
+        }
+
+        .story-item:nth-child(3) {
+            transform: rotate(-5deg) translateY(10px) translateX(-10px);
+        }
+
+        .story-item:nth-child(4) {
+            transform: rotate(15deg) translateY(-20px) translateX(30px);
+        }
+
+        .story-item:nth-child(5) {
+            transform: rotate(-10deg) translateY(15px) translateX(-20px);
+        }
+
+        .story-item:nth-child(6) {
+            transform: rotate(8deg) translateY(-15px) translateX(15px);
+        }
+
+        .story-item:hover {
+            transform: translateY(-10px) scale(1.05) !important;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .story-item:hover .story-image {
+            transform: scale(1.05);
+        }
+
+        .story-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .story-item:hover .story-overlay {
+            opacity: 1;
+        }
+
+        .story-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .story-category {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        .eye-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            padding: 10px;
+            z-index: 10;
+        }
+
+        .story-item:hover .eye-icon {
+            opacity: 1;
+        }
+
+        .view-portfolio {
+            text-align: center;
+            padding: 50px 0;
+            margin-top: 50px;
+        }
+
+        .view-destinations {
+            text-align: center;
+        }
+
+        .view-btn {
+            display: inline-block;
+            color: #000000;
+            text-decoration: none;
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+            /* background: #f8f8f8; */
+            /* border-radius: 30px; */
+            /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+        }
+
+        .view-btn::after {
+            content: '→';
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover::after {
+            transform: translateX(5px);
+        }
+
+        .footer-section {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            background: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 5;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            text-align: center;
+            color: #fff;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-content .footer-text {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .footer-content .footer-text h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+        }
+
+        .footer-content .footer-text p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .footer-copyright {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 6rem;
+            }
+
+            .hero-description {
+                font-size: 1.4rem;
+            }
+
+            .portfolio-section {
+                margin-top: -150px;
+            }
+
+            .carousel-item.center {
+                width: 320px;
+                height: 420px;
+            }
+
+            .carousel-item.left,
+            .carousel-item.right {
+                width: 240px;
+                height: 340px;
+            }
+
+            .adventure-container {
+                flex-direction: column;
+            }
+
+            .navbar {
+                padding: 1rem 5%;
+            }
+
+            .menu-toggle {
+                width: 50px;
+                height: 50px;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .get-in-touch {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 4rem;
+                line-height: 1.1;
+            }
+
+            .hero-description {
+                font-size: 1.2rem;
+                line-height: 1.4;
+            }
+
+            .portfolio-section {
+                margin-top: -100px;
+            }
+
+            .portfolio-carousel {
+                display: flex;
+                gap: 30px;
+                padding: 30px 5%;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .carousel-item.center,
+            .carousel-item.left,
+            .carousel-item.right {
+                width: 100%;
+                max-width: 350px;
+                height: 450px;
+                transform: none !important;
+                opacity: 1 !important;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                border-radius: 15px;
+            }
+
+            .carousel-item:hover {
+                transform: scale(1.02) !important;
+            }
+
+            .carousel-overlay {
+                transform: translateY(0) !important;
+            }
+
+            .story-item {
+                width: 100%;
+                max-width: 300px;
+                /* transform: none !important; */
+            }
+
+            .story-item:hover {
+                transform: scale(1.05) !important;
+            }
+
+            .footer-section {
+                height: 400px;
+            }
+
+            .navbar {
+                padding: 1rem 3%;
+            }
+
+            .hero-content {
+                padding: 0 15px;
+            }
+
+            .adventure-image {
+                height: 400px;
+            }
+
+            .adventure-title {
+                font-size: 2rem;
+            }
+
+            .adventure-description {
+                font-size: 1rem;
+            }
+
+            .section-description {
+                font-size: 1rem;
+                padding: 40px 3%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 3rem;
+                line-height: 1.1;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            .menu-toggle {
+                width: 50px;
+                height: 50px;
+            }
+
+            .footer-section {
+                height: 350px;
+            }
+
+            .carousel-item.center,
+            .carousel-item.left,
+            .carousel-item.right {
+                max-width: 300px;
+                height: 400px;
+            }
+
+            .carousel-title {
+                font-size: 1.2rem;
+            }
+
+            .carousel-category {
+                font-size: 0.8rem;
+            }
+
+            .footer-content {
+                gap: 20px;
+            }
+
+            .footer-content .footer-text h3 {
+                font-size: 1.2rem;
+            }
+
+            .footer-content .footer-text p {
+                font-size: 0.9rem;
+            }
+
+            .view-btn {
+                font-size: 1rem;
+                padding: 8px 16px;
+                letter-spacing: 3px;
+            }
+
+            .social-icons {
+                right: 10px;
+            }
+
+            .location {
+                bottom: 10px;
+                left: 10px;
+                font-size: 0.8rem;
+            }
+
+            .footer-text {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <a href="#" class="logo">Wentoura</a>
+        <button class="get-in-touch">Get in touch</button>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Wentoura!</h1>
+            <div class="hero-description">
+                Let Wentoura Holidays take you to your happy place
+                <span>Travel to any corner of the world, without going around in circles</span>
+            </div>
+        </div>
+        <div class="location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span class="location-text">37.8136° S, 144.9631° E</span>
+        </div>
+        <div class="footer-text">Creating adventures in Melbourne / Bright</div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-vimeo-v"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </section>
+
+    <section class="portfolio-section">
+        <div class="portfolio-carousel" id="carousel"></div>
+        <div class="carousel-nav">
+            <button class="nav-arrow" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-arrow" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="view-destinations">
+            <a href="destination.html" class="view-btn">View Destinations</a>
+        </div>
+    </section>
+
+    <section class="adventure-section">
+        <div class="adventure-container">
+            <div class="adventure-image">
+                <div class="creative-badge">
+                    <div class="badge-text">Adventure Director</div>
+                </div>
+            </div>
+            <div class="adventure-content">
+                <h2 class="adventure-title">It's time to start your adventure</h2>
+                <p class="adventure-description">At Wentoura Holidays, we believe that travel should be fun, stress-free,
+                    and full of unforgettable moments. We're not just here to book your tickets — we're here to help you
+                    create stories you'll want to tell over and over again.</p>
+                <p class="adventure-description">Whether it's a laid-back beach getaway, a mountain escape, or a full-on
+                    international adventure, we've got you covered. Our team is made up of travel lovers who know the
+                    ins and outs of planning the perfect trip — and we do it with heart, not just a checklist.</p>
+                <p class="adventure-description">Let's make your next trip the best one yet. That's what we do at
+                    Wentoura Holidays.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="full-image-section">
+        <div class="full-image-container">
+            <div class="full-image">
+
+            </div>
+            <div class="section-description">Meet Andy, your new adventure director and visual connoisseur. With a
+                background in commercial and photojournalistic photography, he's a multidisciplinary visual creator with
+                a focus on film and storytelling. From shooting weddings to founding two production company's in the
+                last 5 years, fēlan films & emble studio.</div>
+        </div>
+    </section>
+
+    <section class="stories-section">
+        <div class="stories-container">
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?auto=format&fit=crop&w=600&q=80"
+                    alt="Story 1" class="story-image">
+                <div class="eye-icon"><i class="far fa-eye"></i></div>
+                <div class="story-overlay">
+                    <h3 class="story-title">Mountain Adventure</h3>
+                    <p class="story-category">Explore the Peaks</p>
+                </div>
+            </div>
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80"
+                    alt="Story 2" class="story-image">
+                <div class="eye-icon"><i class="far fa-eye"></i></div>
+                <div class="story-overlay">
+                    <h3 class="story-title">Coastal Escape</h3>
+                    <p class="story-category">Sunset Beaches</p>
+                </div>
+            </div>
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80"
+                    alt="Story 3" class="story-image">
+                <div class="eye-icon"><i class="far fa-eye"></i></div>
+                <div class="story-overlay">
+                    <h3 class="story-title">Forest Trek</h3>
+                    <p class="story-category">Nature Walks</p>
+                </div>
+            </div>
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=600&q=80"
+                    alt="Story 4" class="story-image">
+                <div class="eye-icon"><i class="far fa-eye"></i></div>
+                <div class="story-overlay">
+                    <h3 class="story-title">Hidden Waterfalls</h3>
+                    <p class="story-category">Secret Spots</p>
+                </div>
+            </div>
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?auto=format&fit=crop&w=600&q=80"
+                    alt="Story 5" class="story-image">
+                <div class="eye-icon"><i class="far fa-eye"></i></div>
+                <div class="story-overlay">
+                    <h3 class="story-title">Lake Paradise</h3>
+                    <p class="story-category">Tranquil Waters</p>
+                </div>
+            </div>
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=600&q=80"
+                    alt="Story 6" class="story-image">
+                <div class="eye-icon"><i class="far fa-eye"></i></div>
+                <div class="story-overlay">
+                    <h3 class="story-title">Desert Dreams</h3>
+                    <p class="story-category">Golden Dunes</p>
+                </div>
+            </div>
+        </div>
+        <div class="view-portfolio">
+            <a href="stori.html" class="view-btn">View Galeries</a>
+        </div>
+    </section>
+
+    <section class="footer-section">
+        <div class="footer-content">
+            <div class="footer-text">
+                <h3>About</h3>
+                <p>Wentoura Holidays is your trusted travel partner, creating personalized journeys with care, comfort,
+                    and unforgettable experiences.</p>
+
+                <h3>Have a Questions?</h3>
+                <p>Wentoura, Parakkottu Towers, Club Road, 7th Cross Road, Girinagar, Kadavanthra, Ernakulam-682020</p>
+                <p>+91 6238468737 , +91 9995668737</p>
+                <p>Wentoura.com</p>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright ©2025 All rights reserved | Wentoura.co</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const carouselData = [
+            {
+                image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80',
+                title: 'Mountain Peak',
+                category: 'Adventure Travel',
+                bgImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+                title: 'Beach Paradise',
+                category: 'Coastal Escapes',
+                bgImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80',
+                title: 'Sunset Views',
+                category: 'Scenic Moments',
+                bgImage: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1511576661531-b34d7da5d0bb?auto=format&fit=crop&w=800&q=80',
+                title: 'Forest Trails',
+                category: 'Nature Walks',
+                bgImage: 'https://images.unsplash.com/photo-1511576661531-b34d7da5d0bb?auto=format&fit=crop&w=1600&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80',
+                title: 'Island Dreams',
+                category: 'Tropical Getaways',
+                bgImage: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1600&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=800&q=80',
+                title: 'Desert Safari',
+                category: 'Wild Adventures',
+                bgImage: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=1600&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=800&q=80',
+                title: 'Desert Safari',
+                category: 'Wild Adventures',
+                bgImage: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=1600&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=800&q=80',
+                title: 'Desert Safari',
+                category: 'Wild Adventures',
+                bgImage: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=1600&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=800&q=80',
+                title: 'Desert Safari',
+                category: 'Wild Adventures',
+                bgImage: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=1600&q=80'
+            },
+        ];
+
+        let currentIndex = 0;
+        const carousel = document.getElementById('carousel');
+        const hero = document.getElementById('hero');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function getCardPosition(index, current) {
+            const diff = index - current;
+            if (diff === 0) return 'center';
+            if (diff === -1 || (diff === carouselData.length - 1)) return 'left';
+            if (diff === 1 || (diff === -(carouselData.length - 1))) return 'right';
+            return 'hidden';
+        }
+
+        function renderCarousel() {
+            carousel.innerHTML = '';
+
+            const visibleIndices = [
+                (currentIndex - 1 + carouselData.length) % carouselData.length,
+                currentIndex,
+                (currentIndex + 1) % carouselData.length
+            ];
+
+            visibleIndices.forEach(index => {
+                const item = carouselData[index];
+                const position = getCardPosition(index, currentIndex);
+
+                const card = document.createElement('div');
+                card.className = `carousel-item ${position}`;
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="carousel-image">
+                    <div class="carousel-overlay">
+                        <h3 class="carousel-title">${item.title}</h3>
+                        <p class="carousel-category">${item.category}</p>
+                    </div>
+                `;
+
+                if (position !== 'center') {
+                    card.addEventListener('click', () => {
+                        if (position === 'left') {
+                            currentIndex = (currentIndex - 1 + carouselData.length) % carouselData.length;
+                        } else if (position === 'right') {
+                            currentIndex = (currentIndex + 1) % carouselData.length;
+                        }
+                        renderCarousel();
+                        updateBackground();
+                    });
+                }
+
+                carousel.appendChild(card);
+            });
+        }
+
+        function updateBackground() {
+            const currentItem = carouselData[currentIndex];
+            hero.style.backgroundImage = `url('${currentItem.bgImage}')`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + carouselData.length) % carouselData.length;
+            renderCarousel();
+            updateBackground();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % carouselData.length;
+            renderCarousel();
+            updateBackground();
+        });
+
+        // Initialize
+        renderCarousel();
+        updateBackground();
+
+        // Hero animations
+        document.addEventListener("DOMContentLoaded", function () {
+            const heroTitle = document.querySelector(".hero-title");
+            const heroDescription = document.querySelector(".hero-description");
+
+            heroTitle.style.opacity = "0";
+            heroTitle.style.transform = "translateY(30px)";
+            heroDescription.style.opacity = "0";
+            heroDescription.style.transform = "translateY(30px)";
+
+            setTimeout(() => {
+                heroTitle.style.transition = "all 1s ease";
+                heroTitle.style.opacity = "1";
+                heroTitle.style.transform = "translateY(0)";
+            }, 500);
+
+            setTimeout(() => {
+                heroDescription.style.transition = "all 1s ease 0.3s";
+                heroDescription.style.opacity = "1";
+                heroDescription.style.transform = "translateY(0)";
+            }, 500);
+        });
+
+        // Menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            alert('Menu clicked! In a real implementation, this would open a mobile menu.');
+        });
+
+        // Get in touch button
+        document.querySelector('.get-in-touch').addEventListener('click', () => {
+            alert('Contact form would open here!');
+        });
+    </script>
+</body>
+
+</html>

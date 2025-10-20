@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wentoura Holidays - Destinations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #080808;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+        }
+
+        .menu-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-toggle i {
+            color: #000;
+            font-size: 24px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .get-in-touch {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .get-in-touch:hover {
+            background: #f0f0f0;
+        }
+
+        .page-header {
+            padding: 100px 5% 50px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #030303;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .category-link {
+            color: #0e0d0d;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .category-link:hover,
+        .category-link.active {
+            color: #796f6f;
+            text-decoration: underline;
+        }
+
+        .destinations-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding-bottom: 100px;
+        }
+
+        .destination-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            background: #111;
+        }
+
+        .destination-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .destination-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .destination-card:hover .destination-image {
+            transform: scale(1.05);
+        }
+
+        .destination-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            transition: all 0.3s ease;
+        }
+
+        .destination-category {
+            font-size: 1.6rem;
+            color: #cf2c2c;
+            margin-bottom: 5px;
+            display: block;
+     
+        }
+
+        .destination-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .destination-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #ffffff;
+            margin-bottom: 15px;
+            display: none; /* Hide description by default */
+        }
+
+        .destination-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #cf2c2c;
+            margin-bottom: 15px;
+        }
+
+        .destination-cta {
+            display: inline-block;
+            color: #f0ebeb;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: #cf2c2c;
+            transition: all 0.3s ease;
+        }
+
+        .destination-cta:hover {
+            background: #e03a3c;
+            transform: translateX(5px);
+        }
+
+        .footer-section {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            background: url('  https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 5;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            text-align: center;
+            color: #fff;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-content .footer-text {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .footer-content .footer-text h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+        }
+
+        .footer-content .footer-text p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .footer-copyright {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+
+            .menu-toggle {
+                width: 50px;
+                height: 50px;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .get-in-touch {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .categories {
+                gap: 20px;
+                font-size: 0.8rem;
+            }
+
+            .destinations-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 15px;
+            }
+
+            .destination-card {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 3%;
+            }
+
+            .page-header {
+                padding: 80px 5% 40px;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .categories {
+                gap: 15px;
+                font-size: 0.7rem;
+            }
+
+            .destinations-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 10px;
+                padding-bottom: 80px;
+            }
+
+            .destination-card {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .categories {
+                gap: 10px;
+                font-size: 0.7rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .destinations-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding-bottom: 80px;
+            }
+
+            .destination-card {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <a href="index.html" class="logo">Wentoura</a>
+        <button class="get-in-touch">Get in touch</button>
+    </nav>
+
+    <section class="page-header">
+        <h1 class="page-title">Destinations</h1>
+        <div class="categories">
+            <a href="#" class="category-link active">ALL</a>
+            <a href="#" class="category-link">AUSTRALIA</a>
+            <a href="#" class="category-link">ITALY</a>
+            <a href="#" class="category-link">JAPAN</a>
+            <a href="#" class="category-link">NORWAY</a>
+            <a href="#" class="category-link">PERU</a>
+            <a href="#" class="category-link">THAILAND</a>
+            <a href="#" class="category-link">USA</a>
+        </div>
+    </section>
+
+    <div class="destinations-container">
+        <!-- Destination Card 1 -->
+        <div class="destination-card">
+            <img src="  https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" alt="Australian Outback" class="destination-image">
+            <div class="destination-content">
+                <span class="destination-category">Australia</span>
+                <h3 class="destination-title">Australian Outback Adventure</h3>
+                <p class="destination-description">Experience the raw beauty of Australia's red center. Explore Uluru, Kata Tjuta, and the stunning desert landscapes on this unforgettable journey.</p>
+                <span class="destination-price">From $2,499</span>
+                <a href="#" class="destination-cta">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Destination Card 2 -->
+        <div class="destination-card">
+            <img src="  https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Italian Coast" class="destination-image">
+            <div class="destination-content">
+                <span class="destination-category">Italy</span>
+                <h3 class="destination-title">Amalfi Coast Escape</h3>
+                <p class="destination-description">Savor the Mediterranean charm as you explore colorful cliffside villages, taste authentic Italian cuisine, and soak up the sun on pristine beaches.</p>
+                <span class="destination-price">From $2,899</span>
+                <a href="#" class="destination-cta">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Destination Card 3 -->
+        <div class="destination-card">
+            <img src="  https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80" alt="Japanese Culture" class="destination-image">
+            <div class="destination-content">
+                <span class="destination-category">Japan</span>
+                <h3 class="destination-title">Cultural Japan Journey</h3>
+                <p class="destination-description">Immerse yourself in ancient traditions and modern wonders. Visit Kyoto's temples, Tokyo's bustling streets, and experience the unique blend of old and new.</p>
+                <span class="destination-price">From $3,299</span>
+                <a href="#" class="destination-cta">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Destination Card 4 -->
+        <div class="destination-card">
+            <img src="  https://images.unsplash.com/photo-1511576661531-b34d7da5d0bb?auto=format&fit=crop&w=800&q=80" alt="Norwegian Fjords" class="destination-image">
+            <div class="destination-content">
+                <span class="destination-category">Norway</span>
+                <h3 class="destination-title">Fjord Cruise Experience</h3>
+                <p class="destination-description">Navigate through Norway's dramatic fjords, witness cascading waterfalls, and enjoy the serene beauty of the Scandinavian wilderness from the comfort of a luxury cruise.</p>
+                <span class="destination-price">From $3,599</span>
+                <a href="#" class="destination-cta">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Destination Card 5 -->
+        <div class="destination-card">
+            <img src="  https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80" alt="Peruvian Mountains" class="destination-image">
+            <div class="destination-content">
+                <span class="destination-category">Peru</span>
+                <h3 class="destination-title">Machu Picchu Trek</h3>
+                <p class="destination-description">Embark on an epic journey to the lost city of the Incas. Hike the Inca Trail, discover ancient ruins, and experience the rich culture of the Andes mountains.</p>
+                <span class="destination-price">From $2,999</span>
+                <a href="#" class="destination-cta">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Destination Card 6 -->
+        <div class="destination-card">
+            <img src="  https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=800&q=80" alt="Thai Beaches" class="destination-image">
+            <div class="destination-content">
+                <span class="destination-category">Thailand</span>
+                <h3 class="destination-title">Tropical Paradise Retreat</h3>
+                <p class="destination-description">Relax on white sandy beaches, explore vibrant markets, and indulge in delicious Thai cuisine. This is your ultimate island getaway in Southeast Asia.</p>
+                <span class="destination-price">From $1,899</span>
+                <a href="#" class="destination-cta">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Destination Card 7 -->
+        <div class="destination-card">
+            <img src="  https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" alt="US National Parks" class="destination-image">
+            <div class="destination-content">
+                <span class="destination-category">USA</span>
+                <h3 class="destination-title">National Parks Explorer</h3>
+                <p class="destination-description">Discover America's natural wonders. From the Grand Canyon to Yellowstone, this tour takes you through some of the most spectacular landscapes in the United States.</p>
+                <span class="destination-price">From $2,799</span>
+                <a href="#" class="destination-cta">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Destination Card 8 -->
+        <div class="destination-card">
+            <img src="  https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Mountain Adventure" class="destination-image">
+            <div class="destination-content">
+                <span class="destination-category">Switzerland</span>
+                <h3 class="destination-title">Alpine Mountain Escape</h3>
+                <p class="destination-description">Experience the majesty of the Swiss Alps with panoramic views, charming mountain villages, and world-class skiing or hiking opportunities.</p>
+                <span class="destination-price">From $3,199</span>
+                <a href="#" class="destination-cta">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="footer-section">
+        <div class="footer-content">
+            <div class="footer-text">
+                <h3>About</h3>
+                <p>Wentoura Holidays is your trusted travel partner, creating personalized journeys with care, comfort,
+                    and unforgettable experiences.</p>
+
+                <h3>Have a Questions?</h3>
+                <p>Wentoura, Parakkottu Towers, Club Road, 7th Cross Road, Girinagar, Kadavanthra, Ernakulam-682020</p>
+                <p>+91 6238468737 , +91 9995668737</p>
+                <p>Wentoura.com</p>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright ©2025 All rights reserved | Wentoura.co</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add interactivity to category links
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryLinks = document.querySelectorAll('.category-link');
+            
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Remove active class from all links
+                    categoryLinks.forEach(lnk => lnk.classList.remove('active'));
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Here you would typically filter destinations based on category
+                    // For now, just show the active state
+                });
+            });
+            
+            // Menu toggle
+            document.querySelector('.menu-toggle').addEventListener('click', () => {
+                alert('Menu clicked! In a real implementation, this would open a mobile menu.');
+            });
+
+            // Get in touch button
+            document.querySelector('.get-in-touch').addEventListener('click', () => {
+                alert('Contact form would open here!');
+            });
+            
+            // Add hover effect to show description
+            const destinationCards = document.querySelectorAll('.destination-card');
+            destinationCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const description = card.querySelector('.destination-description');
+                    if (description) {
+                        description.style.display = 'block';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    const description = card.querySelector('.destination-description');
+                    if (description) {
+                        description.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

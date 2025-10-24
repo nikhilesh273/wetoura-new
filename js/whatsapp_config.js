@@ -161,7 +161,7 @@ window.WentouraWhatsApp = {
   }
 };
 
-/* ---------------- ACTION MODAL (SAFELY TEMPLATED) ---------------- */
+/* ---------------- ACTION MODAL (PRIMARY ONLY) ---------------- */
 function showWhatsAppButtons(formData) {
   window.lastEnquiryData = formData;
 
@@ -223,24 +223,14 @@ function showWhatsAppButtons(formData) {
     return b;
   };
 
-  const sendPrimary = makeBtn('Send to primary');
+  const sendPrimary = makeBtn('Send');
   sendPrimary.onclick = () => WentouraWhatsApp.open(formData, 'primary');
 
-  const sendSecondary = makeBtn('Send to secondary');
-  if (WHATSAPP_NUMBERS.secondary) {
-    sendSecondary.onclick = () => WentouraWhatsApp.open(formData, 'secondary');
-  } else {
-    sendSecondary.disabled = true;
-    sendSecondary.style.opacity = '0.6';
-  }
-
-  const sendBoth = makeBtn('Send to both');
-  sendBoth.onclick = () => {
-    WentouraWhatsApp.open(formData, 'primary');
-    if (WHATSAPP_NUMBERS.secondary) {
-      setTimeout(() => WentouraWhatsApp.open(formData, 'secondary'), WHATSAPP_OPTIONS.secondNumberDelay);
-    }
-  };
+  const futureNote = document.createElement('p');
+//   futureNote.textContent = 'Secondary number support (send to both) – coming soon.';
+  futureNote.style.fontSize = '12px';
+  futureNote.style.color = '#777';
+  futureNote.style.margin = '6px 8px 0';
 
   const copyLinkBtn = makeBtn('Copy link');
   copyLinkBtn.onclick = () => WentouraWhatsApp.copyLink(formData, 'primary');
@@ -253,14 +243,13 @@ function showWhatsAppButtons(formData) {
   };
 
   row.appendChild(sendPrimary);
-  row.appendChild(sendSecondary);
-  row.appendChild(sendBoth);
   row.appendChild(copyLinkBtn);
   row.appendChild(closeBtn);
 
   modal.appendChild(title);
   modal.appendChild(msgPreview);
   modal.appendChild(row);
+  modal.appendChild(futureNote);
 
   overlay.addEventListener('click', () => {
     overlay.remove();
@@ -290,6 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // checkoutDate: document.getElementById('checkout')?.value?.trim(),
       // travelers: document.getElementById('travelers')?.value?.trim()
     };
+
+    form.reset();
 
     closeEnquiryModal();
 

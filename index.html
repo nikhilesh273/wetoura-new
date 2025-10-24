@@ -828,6 +828,87 @@
         letter-spacing: 3px;
       }
     }
+    .wentoura-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(18, 18, 18, 0.7);
+    z-index: 1999;
+  }
+
+  .modal-content {
+    background: var(--ivory);
+    padding: 40px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .modal-content h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .submit-btn {
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .close-btn {
+    background: var(--light-gray);
+    color: var(--charcoal);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    opacity: 0.9;
+  }
+
   </style>
 </head>
 
@@ -842,7 +923,7 @@
   <nav class="navbar">
     <div class="menu-toggle"><i class="fas fa-bars"></i></div>
     <a href="#" class="logo">Wentoura</a>
-    <button class="get-in-touch">Get in touch</button>
+    <button class="get-in-touch" onclick="openEnquiryModal()">Get in touch</button>
   </nav>
 
   <!-- Hero -->
@@ -1003,6 +1084,41 @@
             </div>
         </div>
     </section>
+
+    <!-- Enquiry Modal -->
+    <div id="enquiryModal" class="wentoura-modal">
+      <div class="modal-content">
+        <h2>Plan Your Trip</h2>
+        <form id="enquiryForm">
+          <div class="form-group">
+            <label>Destination</label>
+            <input type="text" id="destination" placeholder="Enter destination" required />
+          </div>
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Your email" required />
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="phone" placeholder="Your phone number" required />
+          </div>
+          <div class="form-group">
+            <label>Enquiry</label>
+            <textarea id="message" placeholder="Tell us about your trip"></textarea>
+          </div>
+          <div class="modal-buttons">
+            <button type="submit" class="submit-btn">Send Enquiry</button>
+            <button type="button" class="close-btn" onclick="closeEnquiryModal()">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="modalOverlay" class="modal-overlay" onclick="closeEnquiryModal()"></div>
+
 
   <!-- JavaScript -->
   <script>
@@ -1255,10 +1371,9 @@
       alert('Menu clicked! In a real implementation, this would open a mobile menu.');
     });
 
-    document.querySelector('.get-in-touch').addEventListener('click', () => {
-      alert('Contact form would open here!');
-    });
   </script>
+  <script src="js/whatsapp_config.js"></script>
+
 </body>
 
 </html>

@@ -1,11 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wentoura Galeries</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    /* ===== Loading Screen ===== */
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #f5f3f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #000000;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .loader-logo {
+      max-width: 100px;
+      height: auto;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite ease-in-out;
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+    }
+
+    .loader-text {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #000;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+    }
+
+    #loading.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ===== Rest of your existing styles ===== */
     * {
       margin: 0;
       padding: 0;
@@ -33,6 +97,16 @@
       backdrop-filter: blur(5px);
     }
 
+    .logo-icon {
+      height: 40px;
+      width: auto;
+      transition: transform 0.4s ease;
+    }
+
+    .logo-icon:hover {
+      transform: rotate(360deg);
+    }
+
     .menu-toggle {
       width: 60px;
       height: 60px;
@@ -53,15 +127,6 @@
     .menu-toggle i {
       color: #fff;
       font-size: 24px;
-    }
-
-    .logo {
-      font-size: 1.2rem;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: #000;
-      text-decoration: none;
-      font-weight: 500;
     }
 
     .get-in-touch {
@@ -147,37 +212,24 @@
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    /* Randomized sizes for visual variety */
-    .gallery-item:nth-child(4n+1) {
-      grid-column: span 1;
       height: 380px;
     }
 
-    .gallery-item:nth-child(4n+2) {
-      grid-column: span 1;
-      height: 450px;
-    }
-
-    .gallery-item:nth-child(4n+3) {
-      grid-column: span 1;
-      height: 320px;
-    }
-
-    .gallery-item:nth-child(4n+4) {
-      grid-column: span 1;
-      height: 400px;
-    }
-
-    .gallery-image {
+    /* Override heights if needed */
+    .gallery-item img,
+    .gallery-item video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      display: block;
     }
 
-    .gallery-item:hover .gallery-image {
+    .gallery-item video {
+      background: #000;
+    }
+
+    .gallery-item:hover img,
+    .gallery-item:hover video {
       transform: scale(1.05);
     }
 
@@ -203,75 +255,96 @@
       transform: scale(1.2);
     }
 
-     .footer-section {
-            width: 100%;
-            height: 500px;
-            position: relative;
-            overflow: hidden;
-            background: url('  https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 5%;
-        }
+    .footer-section {
+      width: 100%;
+      height: 500px;
+      position: relative;
+      overflow: hidden;
+      background: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5%;
+    }
 
-        .footer-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 5;
-        }
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 5;
+    }
 
-        .footer-content {
-            max-width: 800px;
-            text-align: center;
-            color: #fff;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-        }
+    .footer-content {
+      max-width: 800px;
+      text-align: center;
+      color: #fff;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
 
-        .footer-content .footer-text {
-            text-align: center;
-            max-width: 600px;
-        }
+    .footer-content .footer-text h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: block;
+    }
 
-        .footer-content .footer-text h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: block;
-        }
+    .footer-content .footer-text p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      display: block;
+    }
 
-        .footer-content .footer-text p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            display: block;
-        }
+    .footer-copyright {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      text-align: center;
+    }
 
-        .footer-copyright {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            opacity: 0.8;
-            text-align: center;
-        }
+    /* Eye icon overlay */
+    .eye-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .gallery-item:hover .eye-icon {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
 
     @media (max-width: 992px) {
       .gallery-container {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
       }
+
       .gallery-item {
         height: 300px !important;
       }
@@ -281,18 +354,22 @@
       .gallery-header {
         padding: 100px 5% 50px;
       }
+
       .gallery-title {
         font-size: 2.5rem;
       }
+
       .gallery-nav {
         gap: 25px;
         font-size: 0.8rem;
       }
+
       .gallery-container {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 18px;
         padding-bottom: 80px;
       }
+
       .gallery-item {
         height: 280px !important;
       }
@@ -302,28 +379,40 @@
       .gallery-title {
         font-size: 2rem;
       }
+
       .gallery-nav {
         gap: 20px;
         font-size: 0.75rem;
       }
+
       .gallery-container {
         grid-template-columns: 1fr;
         gap: 15px;
         padding-bottom: 70px;
       }
+
       .gallery-item {
         height: 250px !important;
       }
+
       .social-icons {
         right: 10px;
       }
     }
   </style>
 </head>
+
 <body>
+
+  <!-- Loading Screen -->
+  <div id="loading">
+    <img src="./img/logo.ico" alt="Wentoura Logo" class="loader-logo">
+    <div class="loader-text">Wentoura</div>
+  </div>
+
   <nav class="navbar">
-    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-    <a href="#" class="logo">Wentoura!</a>
+    <img src="./img/logo.ico" alt="Wentoura Logo" class="logo-icon">
+    <a href="index.html" class="logo">Wentoura</a>
     <button class="get-in-touch">Get in touch</button>
   </nav>
 
@@ -337,25 +426,8 @@
     </div>
   </section>
 
-  <div class="gallery-container">
-    <!-- Row 1 -->
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?auto=format&fit=crop&w=600&q=80" alt="Mountain Adventure" class="gallery-image"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80" alt="Coastal Escape" class="gallery-image"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=600&q=80" alt="Desert Dreams" class="gallery-image"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=600&q=80" alt="Hidden Waterfalls" class="gallery-image"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?auto=format&fit=crop&w=600&q=80" alt="Mountain Adventure" class="gallery-image"></div>
-
-    <!-- Row 2 -->
-  <div class="gallery-item"><img src="https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?auto=format&fit=crop&w=600&q=80" alt="Mountain Adventure" class="gallery-image"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80" alt="Forest Trek" class="gallery-image"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80" alt="Sunset Views" class="gallery-image"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Beach Paradise" class="gallery-image"></div>
-
-    <!-- Row 3 -->
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="Mountain Peak" class="gallery-image"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=600&q=80" alt="Island Dreams" class="gallery-image"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511576661531-b34d7da5d0bb?auto=format&fit=crop&w=600&q=80" alt="Forest Trails" class="gallery-image"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=600&q=80" alt="Desert Safari" class="gallery-image"></div>
+  <div class="gallery-container" id="galleryContainer">
+    <!-- Items will be generated by JS -->
   </div>
 
   <div class="social-icons">
@@ -365,27 +437,141 @@
     <a href="#"><i class="fab fa-youtube"></i></a>
   </div>
 
-      <section class="footer-section">
-        <div class="footer-content">
-            <div class="footer-text">
-                <h3>About</h3>
-                <p>Wentoura Holidays is your trusted travel partner, creating personalized journeys with care, comfort,
-                    and unforgettable experiences.</p>
-
-                <h3>Have a Questions?</h3>
-                <p>Wentoura, Parakkottu Towers, Club Road, 7th Cross Road, Girinagar, Kadavanthra, Ernakulam-682020</p>
-                <p>+91 6238468737 , +91 9995668737</p>
-                <p>Wentoura.com</p>
-            </div>
-            <div class="footer-copyright">
-                <p>Copyright ©2025 All rights reserved | Wentoura.co</p>
-            </div>
-        </div>
-    </section>
+  <section class="footer-section">
+    <div class="footer-content">
+      <div class="footer-text">
+        <h3>About</h3>
+        <p>Wentoura Holidays is your trusted travel partner, creating personalized journeys with care, comfort, and
+          unforgettable experiences.</p>
+        <h3>Have a Questions?</h3>
+        <p>Wentoura, Parakkottu Towers, Club Road, 7th Cross Road, Girinagar, Kadavanthra, Ernakulam-682020</p>
+        <p>+91 6238468737 , +91 9995668737</p>
+        <p>Wentoura.com</p>
+      </div>
+      <div class="footer-copyright">
+        <p>Copyright ©2025 All rights reserved | Wentoura.co</p>
+      </div>
+    </div>
+  </section>
 
   <script>
-    document.querySelector('.menu-toggle').addEventListener('click', () => {
-      alert('Menu clicked! In a real implementation, this would open a mobile menu.');
+    // Gallery data — mix of images and videos
+    const galleryData = [
+      { type: 'img', src: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761323610/IMG_5037_r08lmw.jpg', alt: 'Mountain Adventure' },
+      { type: 'img', src: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761323620/IMG_5072_j4k5i4.jpg', alt: 'Coastal Escape' },
+      { type: 'img', src: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761323615/IMG_5070_tkaaqp.jpg', alt: 'Desert Dreams' },
+      { type: 'img', src: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761323616/IMG_5071_qv030n.jpg', alt: 'Hidden Waterfalls' },
+      { type: 'img', src: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761323614/IMG_5038_vkg8ps.jpg', alt: 'Mountain Adventure' },
+      { type: 'img', src: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761323610/IMG_5037_r08lmw.jpg', alt: 'Forest View' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323646/IMG_8235_rlyd9i.mov', alt: 'Adventure Video' },
+      { type: 'img', src: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761322263/IMG_5036_c6pjnn.jpg', alt: 'Sunset Views' },
+      { type: 'img', src: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761321674/IMG_5035_mvimmm.jpg', alt: 'Beach Paradise' },
+      { type: 'img', src: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761321475/IMG_5069_tdkup3.jpg', alt: 'Mountain Peak' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323642/VIDEO-2025-10-20-12-33-40_9_shc59r.mp4', alt: 'Adventure Video1' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323643/VIDEO-2025-10-20-12-33-40_3_a6nm7n.mp4', alt: 'Adventure Video2' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323643/VIDEO-2025-10-20-12-33-40_3_a6nm7n.mp4', alt: 'Adventure Video3' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323641/VIDEO-2025-10-20-12-33-40_12_y4yryi.mp4', alt: 'Adventure Video4' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323639/VIDEO-2025-10-20-12-33-40_11_tntfec.mp4', alt: 'Adventure Video5' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323635/VIDEO-2025-10-20-12-33-40_7_afgvhh.mp4', alt: 'Adventure Video6' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323632/VIDEO-2025-10-20-12-33-40_5_a3uarh.mp4', alt: 'Adventure Video7' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323635/VIDEO-2025-10-20-12-33-40_7_afgvhh.mp4', alt: 'Adventure Video8' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323631/VIDEO-2025-10-20-12-33-39_2_ro9sgb.mp4', alt: 'Adventure Video9' },
+      { type: 'video', src: 'https://res.cloudinary.com/dqm2v4a74/video/upload/v1761323628/VIDEO-2025-10-20-12-33-40_2_z3nstg.mp4', alt: 'Adventure Video10' },
+    ];
+
+     // Render gallery items
+    const container = document.getElementById('galleryContainer');
+    galleryData.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'gallery-item';
+      div.dataset.src = item.src;
+      div.dataset.type = item.type;
+
+      if (item.type === 'video') {
+        div.innerHTML = `
+          <video muted loop playsinline>
+            <source src="${item.src}" type="video/mp4">
+          </video>
+          <div class="eye-icon"><i class="far fa-eye"></i></div>
+        `;
+      } else {
+        div.innerHTML = `
+          <img src="${item.src}" alt="${item.alt}" class="gallery-image">
+          <div class="eye-icon"><i class="far fa-eye"></i></div>
+        `;
+      }
+
+      container.appendChild(div);
+    });
+
+    // Lightbox modal
+    const modal = document.createElement('div');
+    modal.id = 'lightbox';
+    modal.style.cssText = `
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    `;
+    modal.innerHTML = `
+      <div style="position:relative; max-width:90%; max-height:90%;">
+        <button id="close-lightbox" style="
+          position: absolute; top: -40px; right: 0;
+          background: white; border: none; width: 40px; height: 40px;
+          border-radius: 50%; font-size: 20px; cursor: pointer;
+          color: #000; font-weight: bold;
+        ">×</button>
+        <div id="lightbox-content"></div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    // Open lightbox
+    container.addEventListener('click', (e) => {
+      if (e.target.closest('.gallery-item')) {
+        const item = e.target.closest('.gallery-item');
+        const src = item.dataset.src;
+        const type = item.dataset.type;
+        const content = document.getElementById('lightbox-content');
+
+        if (type === 'video') {
+          content.innerHTML = `
+            <video controls autoplay style="max-width:90vw; max-height:80vh;">
+              <source src="${src}" type="video/mp4">
+            </video>
+          `;
+        } else {
+          content.innerHTML = `<img src="${src}" style="max-width:90vw; max-height:80vh; object-fit:contain;">`;
+        }
+
+        modal.style.display = 'flex';
+      }
+    });
+
+    // Close lightbox
+    document.getElementById('close-lightbox').addEventListener('click', () => {
+      modal.style.display = 'none';
+      const video = modal.querySelector('video');
+      if (video) video.pause();
+    });
+
+    // Close on click outside content
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        const video = modal.querySelector('video');
+        if (video) video.pause();
+      }
+    });
+
+    // Hide loader when page is ready
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loading').classList.add('hidden');
+      }, 600);
     });
 
     document.querySelector('.get-in-touch').addEventListener('click', () => {
@@ -393,4 +579,5 @@
     });
   </script>
 </body>
+
 </html>

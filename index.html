@@ -48,6 +48,7 @@
       height: 100%;
       background: #f5f3f0;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 9999;
@@ -55,13 +56,21 @@
       transition: opacity 0.8s ease;
     }
 
+    .loader-logo {
+      max-width: 120px;
+      height: auto;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite ease-in-out;
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+    }
+
     .loader-text {
       font-family: 'Playfair Display', serif;
-      font-size: 5rem;
+      font-size: 2.5rem;
       font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 2px;
-      text-shadow: 0 0 20px rgba(243, 203, 71, 0.582);
+      color: var(--charcoal);
+      letter-spacing: 3px;
+      text-transform: uppercase;
       animation: pulse 2s infinite ease-in-out;
     }
 
@@ -94,7 +103,6 @@
       align-items: center;
       padding: 1.5rem 5%;
       z-index: 1000;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
     }
 
     .menu-toggle {
@@ -119,13 +127,30 @@
       font-size: 24px;
     }
 
-    .logo {
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      height: 40px;
+      width: auto;
+      transition: transform 0.4s ease;
+    }
+
+    .logo-icon:hover {
+      transform: rotate(360deg);
+    }
+
+    .logo-text {
       font-size: 1.2rem;
-      letter-spacing: 5px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--charcoal);
       text-decoration: none;
       font-weight: 600;
+      font-family: 'Playfair Display', serif;
     }
 
     .get-in-touch {
@@ -155,7 +180,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+      background: url('https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388144/heros_4_zdjab7.jpg') no-repeat center center;
       background-size: cover;
       transition: background-image 0.8s ease-in-out;
     }
@@ -247,120 +272,122 @@
       transform: scale(1.2);
     }
 
-    /* ===== Portfolio Carousel ===== */
+    /* ===== Portfolio Section ===== */
     .portfolio-section {
-      padding: 0;
+      padding: 120px 5% 80px;
+      background: var(--ivory);
       position: relative;
-      margin-top: -250px;
-      z-index: 100;
     }
 
-    .portfolio-carousel {
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--charcoal);
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--charcoal);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Horizontal Scroll Portfolio */
+    .portfolio-container {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      padding: 50px 5%;
-      position: relative;
-      min-height: 500px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      gap: 30px;
+      padding: 50px;
+      margin-top: 30px;
     }
 
-    .carousel-item {
-      position: relative;
-      overflow: hidden;
+    .portfolio-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .portfolio-item {
+      flex: auto;
+      min-width: 300px;
+      height: 450px;
       border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      flex-shrink: 0;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      scroll-snap-align: start;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .carousel-item.center {
-      width: 400px;
-      height: 500px;
-      transform: translateY(-30px) scale(1);
-      z-index: 3;
+    .portfolio-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
     }
 
-    .carousel-item.left {
-      width: 300px;
-      height: 400px;
-      transform: translateY(20px) translateX(30px) rotate(-8deg);
-      z-index: 2;
-      opacity: 0.8;
-    }
-
-    .carousel-item.right {
-      width: 300px;
-      height: 400px;
-      transform: translateY(20px) translateX(-30px) rotate(8deg);
-      z-index: 2;
-      opacity: 0.8;
-    }
-
-    .carousel-item.hidden {
-      width: 250px;
-      height: 350px;
-      opacity: 0;
-      transform: scale(0.8);
-      pointer-events: none;
-    }
-
-    .carousel-image {
+    .portfolio-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: all 0.6s ease;
+      transition: transform 0.5s ease;
     }
 
-    .carousel-item:hover .carousel-image {
+    .portfolio-item:hover .portfolio-image {
       transform: scale(1.05);
     }
 
-    .carousel-overlay {
+    .portfolio-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-      padding: 30px;
+      padding: 30px 25px;
       transform: translateY(100%);
-      transition: all 0.4s ease;
+      transition: transform 0.4s ease;
     }
 
-    .carousel-item.center .carousel-overlay,
-    .carousel-item:hover .carousel-overlay {
+    .portfolio-item:hover .portfolio-overlay,
+    .portfolio-item:focus .portfolio-overlay {
       transform: translateY(0);
     }
 
-    .carousel-title {
+    .portfolio-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       color: white;
     }
 
-    .carousel-category {
-      font-size: 0.9rem;
-      color: #aaa;
+    .portfolio-category {
+      font-size: 1rem;
+      color: #ddd;
+      font-weight: 300;
     }
 
-    .carousel-nav {
-      position: absolute;
-      bottom: -80px;
-      left: 50%;
-      transform: translateX(-50%);
+    .portfolio-nav {
       display: flex;
+      justify-content: center;
       gap: 20px;
-      z-index: 10;
+      margin-top: 40px;
     }
 
-    .nav-arrow {
-      width: 50px;
-      height: 50px;
+    .nav-btn {
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       background: var(--ivory);
       border: none;
@@ -369,104 +396,57 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    .nav-arrow:hover {
+    .nav-btn:hover {
       transform: scale(1.1);
       background: #f0f0f0;
     }
 
-    .nav-arrow i {
+    .nav-btn i {
       color: var(--charcoal);
-      font-size: 20px;
+      font-size: 24px;
     }
 
-    /* Mobile Portfolio Carousel */
-    .mobile-carousel {
-      display: none;
-      width: 100%;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      padding: 20px 0;
+    .view-destinations {
+      text-align: center;
       margin-top: 50px;
     }
 
-    .mobile-carousel::-webkit-scrollbar {
-      display: none;
-    }
-
-    .mobile-carousel-container {
-      display: flex;
-      gap: 20px;
-      padding: 0 20px;
-    }
-
-    .mobile-carousel-item {
-      flex: 0 0 calc(50% - 10px);
-      height: 300px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      scroll-snap-align: start;
-      position: relative;
-    }
-
-    .mobile-carousel-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .mobile-carousel-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-      padding: 20px;
-    }
-
-    .mobile-carousel-title {
+    .view-btn {
+      display: inline-block;
+      color: var(--charcoal);
+      text-decoration: none;
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 5px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      padding: 12px 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      background: transparent;
+    }
+
+    .view-btn::after {
+      content: '→';
+      margin-left: 12px;
+      color: var(--gold);
+      transition: all 0.3s ease;
+    }
+
+    .view-btn:hover {
+      background: var(--gold);
       color: white;
     }
 
-    .mobile-carousel-category {
-      font-size: 0.8rem;
-      color: #aaa;
-    }
-
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(212, 175, 55, 0.3);
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .dot.active {
-      background: var(--gold);
+    .view-btn:hover::after {
+      color: white;
     }
 
     /* ===== Adventure Section ===== */
     .adventure-section {
-      padding: 150px 5% 100px;
+      padding: 50px 5% 100px;
       background: var(--ivory);
     }
 
@@ -484,7 +464,7 @@
       border-radius: 10px;
       overflow: hidden;
       height: 500px;
-      background: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80') no-repeat center center;
+      background: url('https://res.cloudinary.com/dqm2v4a74/image/upload/v1761387419/adv2_cc5dxd.jpg') no-repeat center center;
       background-size: cover;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
@@ -538,7 +518,7 @@
     /* ===== Full Image & Stories ===== */
     .full-image-section,
     .stories-section {
-      padding: 100px 5%;
+      padding: 50px 5%;
       background: var(--ivory);
       position: relative;
       overflow: hidden;
@@ -547,7 +527,7 @@
     .full-image {
       width: 100%;
       height: 600px;
-      background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+      background: url('https://res.cloudinary.com/dqm2v4a74/image/upload/v1761384786/full-size_xhwd6t.jpg') no-repeat center center;
       background-size: cover;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       border-radius: 10px;
@@ -650,106 +630,71 @@
       opacity: 1;
     }
 
-    /* ===== Buttons & View Links ===== */
-
-    .view-destinations {
-      text-align: center;
-    }
-
-    .view-portfolio {
-      text-align: center;
-    }
-
-    .view-btn {
-      display: inline-block;
-      color: var(--charcoal);
-      text-decoration: none;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      padding: 10px 20px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .view-btn::after {
-      content: '→';
-      margin-left: 12px;
-      color: var(--gold);
-      transition: all 0.3s ease;
-    }
-
-    .view-btn:hover::after {
-      transform: translateX(8px);
-      color: var(--charcoal);
-    }
-
     /* ===== Footer ===== */
-     .footer-section {
-            width: 100%;
-            height: 500px;
-            position: relative;
-            overflow: hidden;
-            background: url('  https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 5%;
-        }
+    .footer-section {
+      width: 100%;
+      height: 500px;
+      position: relative;
+      overflow: hidden;
+      background: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5%;
+    }
 
-        .footer-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 5;
-        }
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 5;
+    }
 
-        .footer-content {
-            max-width: 800px;
-            text-align: center;
-            color: #fff;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-        }
+    .footer-content {
+      max-width: 800px;
+      color: #fff;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      width: 100%;
+    }
 
-        .footer-content .footer-text {
-            text-align: center;
-            max-width: 600px;
-        }
+    .footer-main-content {
+      width: 100%;
+      text-align: center;
+    }
 
-        .footer-content .footer-text h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: block;
-        }
+    .footer-main-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: block;
+    }
 
-        .footer-content .footer-text p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            display: block;
-        }
+    .footer-main-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      display: block;
+    }
 
-        .footer-copyright {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            opacity: 0.8;
-            text-align: center;
-        }
-
+    .footer-copyright {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      text-align: center;
+      width: 100%;
+    }
 
     /* ===== Responsive ===== */
     @media (max-width: 992px) {
@@ -761,23 +706,17 @@
         font-size: 1.4rem;
       }
 
-      .portfolio-section {
-        margin-top: -150px;
-      }
-
-      .carousel-item.center {
-        width: 320px;
-        height: 420px;
-      }
-
-      .carousel-item.left,
-      .carousel-item.right {
-        width: 240px;
-        height: 340px;
+      .portfolio-item {
+        flex: auto;
+        height: 400px;
       }
 
       .adventure-container {
         flex-direction: column;
+      }
+
+      .footer-section {
+        height: 450px;
       }
     }
 
@@ -791,18 +730,13 @@
         font-size: 1.2rem;
       }
 
-      .portfolio-section {
-        margin-top: -100px;
+      .section-title {
+        font-size: 2.2rem;
       }
 
-      /* Hide desktop carousel on mobile */
-      .portfolio-carousel {
-        display: none;
-      }
-
-      /* Show mobile carousel */
-      .mobile-carousel {
-        display: block;
+      .portfolio-item {
+        flex: auto;
+        height: 350px;
       }
 
       .story-item {
@@ -810,7 +744,23 @@
         max-width: 300px;
       }
 
-     
+      .footer-section {
+        height: 400px;
+      }
+
+      .footer-main-content h3 {
+        font-size: 1.3rem;
+        text-align: center;
+      }
+
+      .footer-main-content p {
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      .footer-copyright {
+        font-size: 0.8rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -822,10 +772,46 @@
         font-size: 1rem;
       }
 
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .portfolio-item {
+        height: 300px;
+      }
+
       .view-btn {
         font-size: 1rem;
         padding: 8px 16px;
         letter-spacing: 3px;
+      }
+
+      .footer-section {
+        height: 350px;
+        padding: 0 3%;
+      }
+
+      .footer-content {
+        gap: 20px;
+      }
+
+      .footer-main-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .footer-main-content p {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+      }
+
+      .footer-copyright {
+        margin-top: 15px;
+        font-size: 0.75rem;
+      }
+
+      .loader-text {
+        font-size: 1.8rem;
       }
     }
   </style>
@@ -835,20 +821,20 @@
 
   <!-- Loading Screen -->
   <div id="loading">
+    <img src="./img/logo.ico" alt="Wentoura Logo" class="loader-logo">
     <div class="loader-text">Wentoura</div>
   </div>
 
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-    <a href="#" class="logo">Wentoura</a>
+    <img src="./img/logo.png" alt="Wentoura Logo" class="logo-icon">
     <button class="get-in-touch">Get in touch</button>
   </nav>
 
   <!-- Hero -->
   <section class="hero" id="hero">
     <div class="hero-content">
-      <h1 class="hero-title">Wentoura!</h1>
+      <h1 class="hero-title">Wentoura</h1>
       <div class="hero-description">
         Let Wentoura Holidays take you to your happy place
         <span>Travel to any corner of the world, without going around in circles</span>
@@ -861,27 +847,29 @@
     <div class="footer-text">Creating adventures in Melbourne / Bright</div>
     <div class="social-icons">
       <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-vimeo-v"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
       <a href="#"><i class="fab fa-facebook-f"></i></a>
       <a href="#"><i class="fab fa-youtube"></i></a>
     </div>
   </section>
 
-  <!-- Portfolio Carousel -->
+  <!-- Portfolio Section -->
   <section class="portfolio-section">
-    <!-- Desktop Carousel -->
-    <div class="portfolio-carousel" id="carousel"></div>
-
-    <!-- Mobile Carousel -->
-    <div class="mobile-carousel" id="mobileCarousel">
-      <div class="mobile-carousel-container" id="mobileCarouselContainer"></div>
-      <div class="carousel-dots" id="carouselDots"></div>
+    <div class="section-header">
+      <h2 class="section-title">Our Destinations</h2>
+      <p class="section-subtitle">Discover breathtaking locations curated by our travel experts. Each destination offers
+        unique experiences that will create memories to last a lifetime.</p>
     </div>
 
-    <div class="carousel-nav">
-      <button class="nav-arrow" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-      <button class="nav-arrow" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+    <div class="portfolio-container" id="portfolioContainer">
+      <!-- Portfolio items will be generated by JavaScript -->
     </div>
+
+    <div class="portfolio-nav">
+      <button class="nav-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+      <button class="nav-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
     <div class="view-destinations">
       <a href="destination.html" class="view-btn">View Destinations</a>
     </div>
@@ -914,15 +902,20 @@
     <div class="full-image-container">
       <div class="full-image"></div>
       <div class="section-description">
-        Meet Andy, your new adventure director and visual connoisseur. With a background in commercial and
-        photojournalistic photography, he's a multidisciplinary visual creator with a focus on film and storytelling.
-        From shooting weddings to founding two production companies in the last 5 years, fēlan films & emble studio.
+        <strong>"</strong>At Wentoura Holidays, your comfort and safety are our top priorities. From the moment you book until you’re back home, we take care of every detail. With trusted partners, experienced guides, and 24/7 support, we make sure your journey is not only unforgettable — but worry-free too.<strong>"</strong>
       </div>
     </div>
   </section>
 
   <!-- Stories -->
   <section class="stories-section">
+    <div class="section-header">
+  <h2 class="section-title">Our Galeries</h2>
+  <p class="section-subtitle">
+    Explore stunning galeries curated by our experts. Each galerie offers unique experiences that will inspire and captivate you.
+  </p>
+</div>
+
     <div class="stories-container">
       <!-- Repeat 6 story items with unique Unsplash images -->
       <div class="story-item">
@@ -980,268 +973,144 @@
         </div>
       </div>
     </div>
-    <div class="view-portfolio">
+    <div class="view-destinations">
       <a href="stori.html" class="view-btn">View Galleries</a>
     </div>
   </section>
 
   <!-- Footer -->
-        <section class="footer-section">
-        <div class="footer-content">
-            <div class="footer-text">
-                <h3>About</h3>
-                <p>Wentoura Holidays is your trusted travel partner, creating personalized journeys with care, comfort,
-                    and unforgettable experiences.</p>
+  <section class="footer-section">
+    <div class="footer-content">
+      <div class="footer-main-content">
+        <h3>About</h3>
+        <p>Wentoura Holidays is your trusted travel partner, creating personalized journeys with care, comfort,
+          and unforgettable experiences.</p>
 
-                <h3>Have a Questions?</h3>
-                <p>Wentoura, Parakkottu Towers, Club Road, 7th Cross Road, Girinagar, Kadavanthra, Ernakulam-682020</p>
-                <p>+91 6238468737 , +91 9995668737</p>
-                <p>Wentoura.com</p>
-            </div>
-            <div class="footer-copyright">
-                <p>Copyright ©2025 All rights reserved | Wentoura.co</p>
-            </div>
-        </div>
-    </section>
+        <h3>Have a Questions?</h3>
+        <p>Wentoura, Parakkottu Towers, Club Road, 7th Cross Road, Girinagar, Kadavanthra, Ernakulam-682020</p>
+        <p>+91 6238468737 , +91 9995668737</p>
+        <p>Wentoura.com</p>
+      </div>
+      <div class="footer-copyright">
+        <p>Copyright ©2025 All rights reserved | Wentoura.co</p>
+      </div>
+    </div>
+  </section>
 
   <!-- JavaScript -->
   <script>
-    // Carousel Data (use unique, high-quality destinations)
-    const carouselData = [
+    // Portfolio Data - All URLs cleaned (no extra spaces)
+    const portfolioData = [
       {
-        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80',
-        title: 'Alpine Serenity',
-        category: 'Mountain Retreats',
-        bgImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80'
+        image: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761326376/L2_w6zaw5.jpg',
+        title: 'Lakshadweep Islands',
+        category: 'Tropical Paradise'
       },
       {
-        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-        title: 'Amalfi Coast',
-        category: 'Mediterranean Escape',
-        bgImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80'
+        image: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761327128/Malaysia_1_x8iu36.jpg',
+        title: 'Malaysia – Truly Asia',
+        category: 'Cultural & Natural Wonders'
       },
       {
-        image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80',
-        title: 'Sunset Views',
-        category: 'Scenic Moments',
-        bgImage: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=80'
+        image: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761327584/Kashmir_1_svimqk.jpg',
+        title: 'Kashmir – Heaven on Earth',
+        category: 'Mountain & Lakeside Escapes'
       },
       {
-        image: 'https://images.unsplash.com/photo-1511576661531-b34d7da5d0bb?auto=format&fit=crop&w=800&q=80',
-        title: 'Forest Trails',
-        category: 'Nature Walks',
-        bgImage: 'https://images.unsplash.com/photo-1511576661531-b34d7da5d0bb?auto=format&fit=crop&w=1600&q=80'
+        image: "https://res.cloudinary.com/dqm2v4a74/image/upload/v1761329525/Kazakhstan_2_oiwgrd.jpg",
+        title: "Kazakhstan – Land of Wonders",
+        category: "Epic Landscapes & Silk Road Heritage"
       },
       {
-        image: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80',
-        title: 'Island Dreams',
-        category: 'Tropical Getaways',
-        bgImage: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1600&q=80'
+        image: "https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330131/Meghalaya_1_y6txaz.jpg",
+        title: "Meghalaya – Land of Clouds",
+        category: "Mist-Cloaked Hills & Living Root Bridges"
       },
       {
-        image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=800&q=80',
-        title: 'Desert Safari',
-        category: 'Wild Adventures',
-        bgImage: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=1600&q=80'
+        image: "https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330335/Bhutan_1_yziet6.jpg",
+        title: "Bhutan – Land of the Thunder Dragon",
+        category: "Himalayan Serenity & Spiritual Retreats"
+      },
+      {
+        image: "https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330553/Thailand_1_ez9p8x.jpg",
+        title: "Thailand – Land of Smiles",
+        category: "Beaches, Temples & Street Food"
+      },
+      {
+        image: "https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330947/Bali_2_wxvq4v.jpg",
+        title: "Bali – Island of the Gods",
+        category: "Beaches, Temples & Rice Terraces"
       }
+      ,
+      {
+        image: "https://res.cloudinary.com/dqm2v4a74/image/upload/v1761378015/Vietnam_1_i2orw8.jpg",
+        title: "Vietnam – Timeless Charm",
+        category: "Heritage, Landscapes & River Life"
+      },
+       {
+        image: "https://res.cloudinary.com/dqm2v4a74/image/upload/v1761378302/Manali_1_u5eexs.jpg",
+        title: "Manali – Himalayan Getaway",
+        category: "Mountains, Adventure & Nature"
+      }
+
     ];
 
-    let currentIndex = 0;
-    const carousel = document.getElementById('carousel');
-    const hero = document.getElementById('hero');
+    const heroImages = [
+      'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388169/heros_5_zg78kw.jpg',
+      'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388193/heros_6_lo6dgp.jpg',
+      'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388206/heros_7_tojvx1.jpg',
+      'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388164/heros_3_kxo5nc.jpg',
+      'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388146/heros_8_ac2huw.jpg',
+      'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388156/heros_1_oqddzg.jpg',
+     
+    ];
+
+    const portfolioContainer = document.getElementById('portfolioContainer');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const mobileCarouselContainer = document.getElementById('mobileCarouselContainer');
-    const carouselDots = document.getElementById('carouselDots');
-    let isDragging = false;
-    let startPos = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    let animationID;
-    let currentIndexMobile = 0;
+    const hero = document.getElementById('hero');
 
-    // Clean URLs (remove extra spaces)
-    function cleanUrl(url) {
-      return url.trim();
-    }
-
-    function getCardPosition(index, current) {
-      const diff = index - current;
-      if (diff === 0) return 'center';
-      if (diff === -1 || diff === carouselData.length - 1) return 'left';
-      if (diff === 1 || diff === -(carouselData.length - 1)) return 'right';
-      return 'hidden';
-    }
-
-    function renderCarousel() {
-      carousel.innerHTML = '';
-      const visibleIndices = [
-        (currentIndex - 1 + carouselData.length) % carouselData.length,
-        currentIndex,
-        (currentIndex + 1) % carouselData.length
-      ];
-
-      visibleIndices.forEach(index => {
-        const item = carouselData[index];
-        const position = getCardPosition(index, currentIndex);
-        const card = document.createElement('div');
-        card.className = `carousel-item ${position}`;
-        card.innerHTML = `
-          <img src="${cleanUrl(item.image)}" alt="${item.title}" class="carousel-image">
-          <div class="carousel-overlay">
-            <h3 class="carousel-title">${item.title}</h3>
-            <p class="carousel-category">${item.category}</p>
+    // Create portfolio items
+    function createPortfolioItems() {
+      portfolioContainer.innerHTML = '';
+      portfolioData.forEach(item => {
+        const portfolioItem = document.createElement('div');
+        portfolioItem.className = 'portfolio-item';
+        portfolioItem.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" class="portfolio-image">
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">${item.title}</h3>
+            <p class="portfolio-category">${item.category}</p>
           </div>
         `;
-        if (position !== 'center') {
-          card.addEventListener('click', () => {
-            if (position === 'left') currentIndex = (currentIndex - 1 + carouselData.length) % carouselData.length;
-            else if (position === 'right') currentIndex = (currentIndex + 1) % carouselData.length;
-            renderCarousel();
-            updateBackground();
-          });
-        }
-        carousel.appendChild(card);
+        portfolioContainer.appendChild(portfolioItem);
       });
     }
 
-    function updateBackground() {
-      hero.style.backgroundImage = `url('${cleanUrl(carouselData[currentIndex].bgImage)}')`;
+    // Auto-rotate hero background
+    let currentImageIndex = 0;
+
+    function changeHeroBackground() {
+      currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+      hero.style.backgroundImage = `url('${heroImages[currentImageIndex]}')`;
     }
 
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + carouselData.length) % carouselData.length;
-      renderCarousel();
-      updateBackground();
-    });
+    // Change every 5 seconds
+    setInterval(changeHeroBackground, 5000);
 
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % carouselData.length;
-      renderCarousel();
-      updateBackground();
-    });
-
-    // Mobile Carousel Functions
-    function renderMobileCarousel() {
-      mobileCarouselContainer.innerHTML = '';
-      carouselDots.innerHTML = '';
-
-      carouselData.forEach((item, index) => {
-        const mobileItem = document.createElement('div');
-        mobileItem.className = 'mobile-carousel-item';
-        mobileItem.innerHTML = `
-          <img src="${cleanUrl(item.image)}" alt="${item.title}" class="mobile-carousel-image">
-          <div class="mobile-carousel-overlay">
-            <h3 class="mobile-carousel-title">${item.title}</h3>
-            <p class="mobile-carousel-category">${item.category}</p>
-          </div>
-        `;
-        mobileCarouselContainer.appendChild(mobileItem);
-
-        // Create dot
-        const dot = document.createElement('div');
-        dot.className = 'dot';
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-          goToSlide(index);
-        });
-        carouselDots.appendChild(dot);
-      });
-
-      // Set initial position
-      mobileCarouselContainer.style.transform = `translateX(0)`;
-    }
-
-    function goToSlide(index) {
-      currentIndexMobile = index;
-      const slideWidth = mobileCarouselContainer.children[0].offsetWidth + 20; // 20px gap
-      mobileCarouselContainer.style.transform = `translateX(${-slideWidth * index}px)`;
-
-      // Update dots
-      document.querySelectorAll('.dot').forEach((dot, i) => {
-        if (i === index) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
-
-      // Update hero background
-      hero.style.backgroundImage = `url('${cleanUrl(carouselData[index].bgImage)}')`;
-    }
-
-    // Touch events for mobile carousel
-    function touchStart(index) {
-      return function (event) {
-        isDragging = true;
-        startPos = getPositionX(event);
-        animationID = requestAnimationFrame(animation);
-        mobileCarouselContainer.classList.add('grabbing');
-      };
-    }
-
-    function touchMove(event) {
-      if (isDragging) {
-        const currentPosition = getPositionX(event);
-        currentTranslate = prevTranslate + currentPosition - startPos;
-      }
-    }
-
-    function touchEnd() {
-      cancelAnimationFrame(animationID);
-      isDragging = false;
-      const movedBy = currentTranslate - prevTranslate;
-
-      // Check if moved enough to change slide
-      if (movedBy < -100 && currentIndexMobile < carouselData.length - 1) {
-        currentIndexMobile += 1;
-      }
-
-      if (movedBy > 100 && currentIndexMobile > 0) {
-        currentIndexMobile -= 1;
-      }
-
-      goToSlide(currentIndexMobile);
-      mobileCarouselContainer.classList.remove('grabbing');
-    }
-
-    function getPositionX(event) {
-      return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-    }
-
-    function animation() {
-      mobileCarouselContainer.style.transform = `translateX(${currentTranslate}px)`;
-      if (isDragging) requestAnimationFrame(animation);
-    }
-
-    // Initialize mobile carousel
-    function initMobileCarousel() {
-      renderMobileCarousel();
-
-      // Add touch events to each slide
-      for (let i = 0; i < mobileCarouselContainer.children.length; i++) {
-        const slide = mobileCarouselContainer.children[i];
-        const slideIndex = i;
-
-        // Touch events
-        slide.addEventListener('touchstart', touchStart(slideIndex));
-        slide.addEventListener('touchmove', touchMove);
-        slide.addEventListener('touchend', touchEnd);
-
-        // Mouse events for desktop testing
-        slide.addEventListener('mousedown', touchStart(slideIndex));
-        slide.addEventListener('mousemove', touchMove);
-        slide.addEventListener('mouseup', touchEnd);
-        slide.addEventListener('mouseleave', touchEnd);
-      }
+    // Scroll navigation
+    function scrollPortfolio(direction) {
+      const container = portfolioContainer;
+      const scrollAmount = direction === 'left' ? -container.offsetWidth : container.offsetWidth;
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
 
     // Initialize
-    renderCarousel();
-    updateBackground();
+    createPortfolioItems();
 
-    // Initialize mobile carousel
-    initMobileCarousel();
+    // Event listeners
+    prevBtn.addEventListener('click', () => scrollPortfolio('left'));
+    nextBtn.addEventListener('click', () => scrollPortfolio('right'));
 
     // Hide loader on page load
     window.addEventListener('load', () => {
@@ -1250,10 +1119,7 @@
       }, 800);
     });
 
-    // Interactive buttons
-    document.querySelector('.menu-toggle').addEventListener('click', () => {
-      alert('Menu clicked! In a real implementation, this would open a mobile menu.');
-    });
+
 
     document.querySelector('.get-in-touch').addEventListener('click', () => {
       alert('Contact form would open here!');

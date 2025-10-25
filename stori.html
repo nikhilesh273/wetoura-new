@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wentoura Galeries</title>
+  <link rel="icon" href="./img/logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     /* ===== Loading Screen ===== */
@@ -33,8 +34,9 @@
       font-weight: 500;
     }
 
-    .loader-logo {
-      max-width: 100px;
+   .loader-logo {
+      max-width: 400px;
+      width: 400px;
       height: auto;
       margin-bottom: 20px;
       animation: pulse 2s infinite ease-in-out;
@@ -85,7 +87,7 @@
     }
 
     .navbar {
-      position: fixed;
+      position: absolute;
       top: 0;
       width: 100%;
       display: flex;
@@ -97,14 +99,14 @@
       backdrop-filter: blur(5px);
     }
 
-    .logo-icon {
-      height: 40px;
-      width: auto;
+   .logo-icon {
+      width: 200px;
+      height: auto;
       transition: transform 0.4s ease;
     }
 
     .logo-icon:hover {
-      transform: rotate(360deg);
+      transform: scale(1.05);
     }
 
     .menu-toggle {
@@ -339,6 +341,105 @@
       transform: translate(-50%, -50%) scale(1);
     }
 
+    /* ===== Modal Styles ===== */
+    .wentoura-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      z-index: 2000;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1999;
+    }
+
+    .modal-content {
+      position: relative;
+    }
+
+    .modal-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: var(--charcoal);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .submit-btn,
+    .close-btn {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn {
+      background: var(--gold);
+      color: rgb(14, 13, 13);
+    }
+
+    .close-btn {
+      background: #eee;
+      color: var(--charcoal);
+    }
+
+    .submit-btn:hover {
+      background: #c19b2f;
+    }
+
+    .close-btn:hover {
+      background: #ddd;
+    }
+
     @media (max-width: 992px) {
       .gallery-container {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -398,23 +499,27 @@
       .social-icons {
         right: 10px;
       }
+       .loader-logo {
+        width: 400px;
+        max-width: 400px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Loading Screen -->
+    <!-- Loading Screen -->
   <div id="loading">
-    <img src="./img/logo.ico" alt="Wentoura Logo" class="loader-logo">
-    <div class="loader-text">Wentoura</div>
+    <img src="./img/logo.png" alt="Wentoura Logo" class="loader-logo">
   </div>
 
+  <!-- Navbar -->
   <nav class="navbar">
-    <img src="./img/logo.ico" alt="Wentoura Logo" class="logo-icon">
-    <a href="index.html" class="logo">Wentoura</a>
-    <button class="get-in-touch">Get in touch</button>
+    <img src="./img/logo.png" alt="Wentoura Logo" class="logo-icon">
+    <button class="get-in-touch" onclick="openEnquiryModal()">Get in touch</button>
   </nav>
+
 
   <section class="gallery-header">
     <h1 class="gallery-title">Galeries</h1>
@@ -453,6 +558,40 @@
       </div>
     </div>
   </section>
+
+   <!-- Enquiry Modal -->
+  <div id="enquiryModal" class="wentoura-modal">
+    <div class="modal-content">
+      <h2>Plan Your Trip</h2>
+      <form id="enquiryForm">
+        <div class="form-group">
+          <label>Destination</label>
+          <input type="text" id="destination" placeholder="Enter destination" required />
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="Your email" required />
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="phone" placeholder="Your phone number" required />
+        </div>
+        <div class="form-group">
+          <label>Enquiry</label>
+          <textarea id="message" placeholder="Tell us about your trip"></textarea>
+        </div>
+        <div class="modal-buttons">
+          <button type="submit" class="submit-btn">Send Enquiry</button>
+          <button type="button" class="close-btn" onclick="closeEnquiryModal()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="modalOverlay" class="modal-overlay" onclick="closeEnquiryModal()"></div>
 
   <script>
     // Gallery data — mix of images and videos
@@ -574,10 +713,8 @@
       }, 600);
     });
 
-    document.querySelector('.get-in-touch').addEventListener('click', () => {
-      alert('Contact form would open here!');
-    });
   </script>
+    <script src="js/whats-app.js"></script>
 </body>
 
 </html>

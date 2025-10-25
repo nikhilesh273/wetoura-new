@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wentoura Holidays - Destinations</title>
+  <link rel="icon" href="./img/logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -45,7 +46,8 @@
     }
 
     .loader-logo {
-      max-width: 100px;
+      max-width: 400px;
+      width: 400px;
       height: auto;
       margin-bottom: 20px;
       animation: pulse 2s infinite ease-in-out;
@@ -62,17 +64,19 @@
     }
 
     @keyframes pulse {
+
       0%,
       100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.05);
       }
     }
 
     .navbar {
-      position: fixed;
+      position: absolute;
       top: 0;
       width: 100%;
       display: flex;
@@ -325,14 +329,136 @@
     }
 
     .logo-icon {
-      height: 40px;
-      width: auto;
+      width: 200px;
+      height: auto;
       transition: transform 0.4s ease;
     }
 
     .logo-icon:hover {
-      transform: rotate(360deg);
+      transform: scale(1.05);
     }
+
+    /* ===== Modal Styles ===== */
+    .wentoura-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      z-index: 2000;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1999;
+    }
+
+    .modal-content {
+      position: relative;
+    }
+
+    .modal-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: var(--charcoal);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .submit-btn,
+    .close-btn {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn {
+      background: var(--gold);
+      color: white;
+    }
+
+    .close-btn {
+      background: #eee;
+      color: var(--charcoal);
+    }
+
+    .submit-btn:hover {
+      background: #c19b2f;
+    }
+
+    .close-btn:hover {
+      background: #ddd;
+    }
+
+     .social-icons {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 1000;
+    }
+
+    .social-icons a {
+      color: #000;
+      font-size: 24px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
+
 
     @media (max-width: 992px) {
       .navbar {
@@ -422,22 +548,29 @@
       .destination-card {
         height: 180px;
       }
+       .loader-logo {
+        width: 400px;
+        max-width: 400px;
+      }
+        .social-icons {
+        right: 10px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- Loading Screen -->
+   <!-- Loading Screen -->
   <div id="loading">
-    <img src="./img/logo.ico" alt="Wentoura Logo" class="loader-logo">
-    <div class="loader-text">Wentoura</div>
+    <img src="./img/logo.png" alt="Wentoura Logo" class="loader-logo">
   </div>
 
+  <!-- Navbar -->
   <nav class="navbar">
-    <img src="./img/logo.ico" alt="Wentoura Logo" class="logo-icon">
-    <a href="index.html" class="logo">Wentoura</a>
-    <button class="get-in-touch">Get in touch</button>
+    <img src="./img/logo.png" alt="Wentoura Logo" class="logo-icon">
+    <button class="get-in-touch" onclick="openEnquiryModal()">Get in touch</button>
   </nav>
+
 
   <section class="page-header">
     <h1 class="page-title">Destinations</h1>
@@ -450,10 +583,18 @@
     </div>
   </section>
 
+    <div class="social-icons">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-vimeo-v"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+  </div>
+
   <div class="destinations-container">
     <!-- Destination Card 1 -->
     <div class="destination-card" data-category="india">
-      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761326376/L1_v3xdor.jpg" alt="Lakshadweep Island" class="destination-image">
+      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761326376/L1_v3xdor.jpg" alt="Lakshadweep Island"
+        class="destination-image">
       <div class="destination-content">
         <span class="destination-category">India</span>
         <h3 class="destination-title">Lakshadweep Island Escape</h3>
@@ -467,7 +608,8 @@
 
     <!-- Destination Card 2 -->
     <div class="destination-card" data-category="asia">
-      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761327127/Malaysia_2_voum5d.jpg" alt="Malaysia" class="destination-image">
+      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761327127/Malaysia_2_voum5d.jpg" alt="Malaysia"
+        class="destination-image">
       <div class="destination-content">
         <span class="destination-category">Asia</span>
         <h3 class="destination-title">Magical Malaysia Discovery</h3>
@@ -481,7 +623,8 @@
 
     <!-- Destination Card 3 -->
     <div class="destination-card" data-category="asia">
-      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330553/Thailand_2_c2ujbi.jpg" alt="Thailand" class="destination-image">
+      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330553/Thailand_2_c2ujbi.jpg" alt="Thailand"
+        class="destination-image">
       <div class="destination-content">
         <span class="destination-category">Asia</span>
         <h3 class="destination-title">Thailand Tropical Escape</h3>
@@ -495,7 +638,8 @@
 
     <!-- Destination Card 4 -->
     <div class="destination-card" data-category="india">
-      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761327580/Kashmir_2_prj9hb.jpg" alt="Kashmir" class="destination-image">
+      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761327580/Kashmir_2_prj9hb.jpg" alt="Kashmir"
+        class="destination-image">
       <div class="destination-content">
         <span class="destination-category">India</span>
         <h3 class="destination-title">Heavenly Kashmir Retreat</h3>
@@ -509,7 +653,8 @@
 
     <!-- Destination Card 5 -->
     <div class="destination-card" data-category="central asia">
-      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761329531/Kazakhstan_1_foamnn.jpg" alt="Kazakhstan" class="destination-image">
+      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761329531/Kazakhstan_1_foamnn.jpg" alt="Kazakhstan"
+        class="destination-image">
       <div class="destination-content">
         <span class="destination-category">Central Asia</span>
         <h3 class="destination-title">Kazakhstan Explorer</h3>
@@ -523,7 +668,8 @@
 
     <!-- Destination Card 6 -->
     <div class="destination-card" data-category="india">
-      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330131/Meghalaya_2_llnfh2.jpg" alt="Meghalaya" class="destination-image">
+      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330131/Meghalaya_2_llnfh2.jpg" alt="Meghalaya"
+        class="destination-image">
       <div class="destination-content">
         <span class="destination-category">India</span>
         <h3 class="destination-title">Mystical Meghalaya Adventure</h3>
@@ -537,7 +683,8 @@
 
     <!-- Destination Card 7 -->
     <div class="destination-card" data-category="asia">
-      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330327/Bhutan_2_cdcxi8.jpg" alt="Bhutan" class="destination-image">
+      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330327/Bhutan_2_cdcxi8.jpg" alt="Bhutan"
+        class="destination-image">
       <div class="destination-content">
         <span class="destination-category">Asia</span>
         <h3 class="destination-title">Bhutan Cultural Retreat</h3>
@@ -551,7 +698,8 @@
 
     <!-- Destination Card 8 -->
     <div class="destination-card" data-category="indonesia">
-      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330938/Bali_1_hzikgx.jpg" alt="Bali" class="destination-image">
+      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330938/Bali_1_hzikgx.jpg" alt="Bali"
+        class="destination-image">
       <div class="destination-content">
         <span class="destination-category">Indonesia</span>
         <h3 class="destination-title">Bali Island Paradise</h3>
@@ -565,7 +713,8 @@
 
     <!-- Destination Card 9 -->
     <div class="destination-card" data-category="asia">
-      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761377954/Vietnam_2_o6yvew.jpg" alt="Vietnam" class="destination-image">
+      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761377954/Vietnam_2_o6yvew.jpg" alt="Vietnam"
+        class="destination-image">
       <div class="destination-content">
         <span class="destination-category">Asia</span>
         <h3 class="destination-title">Vietnam Scenic Journey</h3>
@@ -579,7 +728,8 @@
 
     <!-- Destination Card 10 -->
     <div class="destination-card" data-category="india">
-      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761378275/Manali_2_eoitam.jpg" alt="Manali" class="destination-image">
+      <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1761378275/Manali_2_eoitam.jpg" alt="Manali"
+        class="destination-image">
       <div class="destination-content">
         <span class="destination-category">India</span>
         <h3 class="destination-title">Manali Mountain Escape</h3>
@@ -609,6 +759,41 @@
       </div>
     </div>
   </section>
+
+
+  <!-- Enquiry Modal -->
+  <div id="enquiryModal" class="wentoura-modal">
+    <div class="modal-content">
+      <h2>Plan Your Trip</h2>
+      <form id="enquiryForm">
+        <div class="form-group">
+          <label>Destination</label>
+          <input type="text" id="destination" placeholder="Enter destination" required />
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="Your email" required />
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="phone" placeholder="Your phone number" required />
+        </div>
+        <div class="form-group">
+          <label>Enquiry</label>
+          <textarea id="message" placeholder="Tell us about your trip"></textarea>
+        </div>
+        <div class="modal-buttons">
+          <button type="submit" class="submit-btn">Send Enquiry</button>
+          <button type="button" class="close-btn" onclick="closeEnquiryModal()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="modalOverlay" class="modal-overlay" onclick="closeEnquiryModal()"></div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -640,10 +825,7 @@
         });
       });
 
-      // Get in touch button
-      document.querySelector('.get-in-touch').addEventListener('click', () => {
-        alert('Contact form would open here!');
-      });
+
 
       // Hover to show description
       destinationCards.forEach(card => {
@@ -674,6 +856,7 @@
       }, 600);
     });
   </script>
+  <script src="js/whats-app.js"></script>
 </body>
 
 </html>

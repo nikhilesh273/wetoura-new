@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wentoura Holidays – Your Happy Place</title>
+  <title>Wentoura Holidays</title>
+  <link rel="icon" href="./img/logo.ico" type="image/x-icon">
 
   <!-- Google Fonts: Playfair Display & Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +15,7 @@
     rel="stylesheet">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
@@ -57,21 +58,12 @@
     }
 
     .loader-logo {
-      max-width: 120px;
+      max-width: 400px;
+      width: 400px;
       height: auto;
       margin-bottom: 20px;
       animation: pulse 2s infinite ease-in-out;
       filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
-    }
-
-    .loader-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: var(--charcoal);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      animation: pulse 2s infinite ease-in-out;
     }
 
     @keyframes pulse {
@@ -95,7 +87,7 @@
 
     /* ===== Global Styles ===== */
     .navbar {
-      position: fixed;
+      position: absolute;
       top: 0;
       width: 100%;
       display: flex;
@@ -127,30 +119,16 @@
       font-size: 24px;
     }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    /* Logo styling */
     .logo-icon {
-      height: 40px;
-      width: auto;
+      width: 200px;
+      height: auto;
       transition: transform 0.4s ease;
+      filter: brightness(0) invert(1); 
     }
 
     .logo-icon:hover {
-      transform: rotate(360deg);
-    }
-
-    .logo-text {
-      font-size: 1.2rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--charcoal);
-      text-decoration: none;
-      font-weight: 600;
-      font-family: 'Playfair Display', serif;
+      transform: scale(1.05);
     }
 
     .get-in-touch {
@@ -696,6 +674,105 @@
       width: 100%;
     }
 
+    /* ===== Modal Styles ===== */
+    .wentoura-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      z-index: 2000;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1999;
+    }
+
+    .modal-content {
+      position: relative;
+    }
+
+    .modal-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: var(--charcoal);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .submit-btn,
+    .close-btn {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn {
+      background: var(--gold);
+      color: white;
+    }
+
+    .close-btn {
+      background: #eee;
+      color: var(--charcoal);
+    }
+
+    .submit-btn:hover {
+      background: #c19b2f;
+    }
+
+    .close-btn:hover {
+      background: #ddd;
+    }
+
     /* ===== Responsive ===== */
     @media (max-width: 992px) {
       .hero-title {
@@ -810,8 +887,9 @@
         font-size: 0.75rem;
       }
 
-      .loader-text {
-        font-size: 1.8rem;
+      .loader-logo {
+        width: 400px;
+        max-width: 400px;
       }
     }
   </style>
@@ -821,14 +899,13 @@
 
   <!-- Loading Screen -->
   <div id="loading">
-    <img src="./img/logo.ico" alt="Wentoura Logo" class="loader-logo">
-    <div class="loader-text">Wentoura</div>
+    <img src="./img/logo.png" alt="Wentoura Logo" class="loader-logo">
   </div>
 
   <!-- Navbar -->
   <nav class="navbar">
     <img src="./img/logo.png" alt="Wentoura Logo" class="logo-icon">
-    <button class="get-in-touch">Get in touch</button>
+    <button class="get-in-touch" onclick="openEnquiryModal()">Get in touch</button>
   </nav>
 
   <!-- Hero -->
@@ -902,7 +979,9 @@
     <div class="full-image-container">
       <div class="full-image"></div>
       <div class="section-description">
-        <strong>"</strong>At Wentoura Holidays, your comfort and safety are our top priorities. From the moment you book until you’re back home, we take care of every detail. With trusted partners, experienced guides, and 24/7 support, we make sure your journey is not only unforgettable — but worry-free too.<strong>"</strong>
+        <strong>"</strong>At Wentoura Holidays, your comfort and safety are our top priorities. From the moment you book
+        until you’re back home, we take care of every detail. With trusted partners, experienced guides, and 24/7
+        support, we make sure your journey is not only unforgettable — but worry-free too.<strong>"</strong>
       </div>
     </div>
   </section>
@@ -910,11 +989,12 @@
   <!-- Stories -->
   <section class="stories-section">
     <div class="section-header">
-  <h2 class="section-title">Our Galeries</h2>
-  <p class="section-subtitle">
-    Explore stunning galeries curated by our experts. Each galerie offers unique experiences that will inspire and captivate you.
-  </p>
-</div>
+      <h2 class="section-title">Our Galeries</h2>
+      <p class="section-subtitle">
+        Explore stunning galeries curated by our experts. Each galerie offers unique experiences that will inspire and
+        captivate you.
+      </p>
+    </div>
 
     <div class="stories-container">
       <!-- Repeat 6 story items with unique Unsplash images -->
@@ -997,6 +1077,40 @@
     </div>
   </section>
 
+  <!-- Enquiry Modal -->
+  <div id="enquiryModal" class="wentoura-modal">
+    <div class="modal-content">
+      <h2>Plan Your Trip</h2>
+      <form id="enquiryForm">
+        <div class="form-group">
+          <label>Destination</label>
+          <input type="text" id="destination" placeholder="Enter destination" required />
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="Your email" required />
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="phone" placeholder="Your phone number" required />
+        </div>
+        <div class="form-group">
+          <label>Enquiry</label>
+          <textarea id="message" placeholder="Tell us about your trip"></textarea>
+        </div>
+        <div class="modal-buttons">
+          <button type="submit" class="submit-btn">Send Enquiry</button>
+          <button type="button" class="close-btn" onclick="closeEnquiryModal()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="modalOverlay" class="modal-overlay" onclick="closeEnquiryModal()"></div>
+
   <!-- JavaScript -->
   <script>
     // Portfolio Data - All URLs cleaned (no extra spaces)
@@ -1047,7 +1161,7 @@
         title: "Vietnam – Timeless Charm",
         category: "Heritage, Landscapes & River Life"
       },
-       {
+      {
         image: "https://res.cloudinary.com/dqm2v4a74/image/upload/v1761378302/Manali_1_u5eexs.jpg",
         title: "Manali – Himalayan Getaway",
         category: "Mountains, Adventure & Nature"
@@ -1062,7 +1176,7 @@
       'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388164/heros_3_kxo5nc.jpg',
       'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388146/heros_8_ac2huw.jpg',
       'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388156/heros_1_oqddzg.jpg',
-     
+
     ];
 
     const portfolioContainer = document.getElementById('portfolioContainer');
@@ -1118,13 +1232,8 @@
         document.getElementById('loading').classList.add('hidden');
       }, 800);
     });
-
-
-
-    document.querySelector('.get-in-touch').addEventListener('click', () => {
-      alert('Contact form would open here!');
-    });
   </script>
+  <script src="js/whats-app.js"></script>
 </body>
 
 </html>

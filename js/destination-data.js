@@ -977,39 +977,49 @@ const destinationData = {
 
   'manali-himalayan-getaway': {
     title: 'Manali – Himalayan Getaway',
-    subtitle: 'Mountains, Adventure & Nature',
+    subtitle: 'Delhi-Agra-Manali Package',
     heroImage: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761378302/Manali_1_u5eexs.jpg',
-    description: `Experience the charm of Manali with Wentoura Holidays - nestled in the heart of the Himalayas, offering snow-covered peaks, scenic valleys, and thrilling adventures.`,
+    description: `Experience Manali with Wentoura Holidays - a complete 6 Days/5 Nights journey covering Delhi, Agra, and Manali. Explore the Taj Mahal, enjoy the Himalayan beauty, and create unforgettable memories.`,
     
     itinerary: [
       {
         day: 1,
-        title: 'Arrival Manali - Local Sightseeing',
-        description: 'Arrive in Manali and check into your hotel. Visit Hadimba Temple with its unique architecture, explore Mall Road for shopping and local cuisine. Evening visit to Vashisht Hot Springs for relaxation. Overnight stay in Manali.'
+        title: 'Arrival at Agra – Sightseeing',
+        description: 'Arrival at Agra. Hotel check-in and freshen up. Lunch (Buffet). Sightseeing: Taj Mahal, Agra Fort. Dinner and overnight stay at hotel in Agra.'
       },
       {
         day: 2,
-        title: 'Solang Valley Adventure',
-        description: 'Full day excursion to Solang Valley. Enjoy adventure activities like paragliding, zorbing, and ropeway rides. In winter, experience skiing and snow activities. Visit local cafes and enjoy the mountain scenery. Return to hotel in evening.'
+        title: 'Agra to Delhi – Sightseeing & Overnight Journey to Manali',
+        description: 'Breakfast and check-out. Transfer to Delhi (approx. 3–4 hrs). Lunch on arrival. Sightseeing: India Gate, Lotus Temple, Qutub Minar. Evening: Board overnight Volvo bus to Manali (Dinner not included during journey).'
       },
       {
         day: 3,
-        title: 'Rohtang Pass Excursion',
-        description: 'Early morning departure to Rohtang Pass (subject to weather and permit availability). Experience snow activities, enjoy panoramic mountain views, and visit Rahalla Falls en route. Return to Manali by evening.'
+        title: 'Arrival in Manali – Sightseeing',
+        description: 'Arrival at Manali Volvo stand. Transfer to hotel. Hotel check-in and breakfast. Sightseeing: Hadimba Temple, Manu Temple, Tibetan Monastery, Van Vihar, Mall Road. Lunch and dinner at hotel. Overnight stay at hotel in Manali.'
       },
       {
         day: 4,
-        title: 'Old Manali & Departure',
-        description: 'Visit Old Manali with its hippie cafes and peaceful atmosphere. Explore Manu Temple and enjoy the scenic Beas River views. Check out from hotel and departure with wonderful memories of the mountains.'
+        title: 'Solang Valley / Snow Point – Return to Delhi',
+        description: 'Early breakfast and check-out. Excursion to Solang Valley or Snow Point (if time allows). Optional: Activities like skiing, snow biking, paragliding (at own cost). Lunch at local restaurant. Evening: Board overnight Volvo bus to Delhi (Dinner not included during journey).'
+      },
+      {
+        day: 5,
+        title: 'Arrival in Delhi – Sightseeing',
+        description: 'Early morning arrival in Delhi. Hotel check-in and breakfast. Sightseeing: Red Fort, Raj Ghat, Humayun\'s Tomb. Lunch and dinner at hotel. Overnight stay at hotel in Delhi.'
+      },
+      {
+        day: 6,
+        title: 'Departure from Delhi',
+        description: 'Early morning drop to Delhi Railway Station / Airport. Tour ends with memorable experiences of Delhi, Agra, and Manali.'
       }
     ],
     
     quickInfo: {
-      'Duration': '4 Days 3 Nights',
-      'Best Time': 'March to June, September to November',
-      'Activities': 'Adventure Sports, Temples, Snow Activities',
+      'Duration': '6 Days 5 Nights',
+      'Best Time': 'March to June, October to February',
+      'Activities': 'Adventure Sports, Sightseeing, Cultural Tours',
       'Climate': 'Alpine',
-      'Language': 'Hindi, Pahari, English'
+      'Language': 'Hindi, English'
     },
     
     highlights: [
@@ -1113,37 +1123,52 @@ const destinationData = {
 
   'bhutan-land-of-thunder-dragon': {
     title: 'Bhutan – Land of the Thunder Dragon',
-    subtitle: 'Himalayan Serenity & Spiritual Retreats',
+    subtitle: 'Bagdogra to Bagdogra Package',
     heroImage: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761330335/Bhutan_1_yziet6.jpg',
-    description: `Experience Bhutan with Wentoura Holidays - the Last Shangri-La offering pristine monasteries, Gross National Happiness philosophy, and carbon-negative sustainability.`,
+    description: `Experience Bhutan with Wentoura Holidays - the Last Shangri-La, where Gross National Happiness takes precedence over GDP. 6 Nights / 7 Days package from Bagdogra to Bagdogra with border crossing experience.`,
     
     itinerary: [
       {
         day: 1,
-        title: 'Arrival Paro - Thimphu',
-        description: 'Arrive at Paro Airport and drive to Thimphu (1.5 hours). Visit Tashichho Dzong, Memorial Chorten, and Buddha Dordenma statue. Explore Thimphu weekend market (if weekend). Overnight in Thimphu.'
+        title: 'Arrival - Bagdogra to Phuentsholing',
+        description: 'Pick-up from Bagdogra Airport (IXB) and 5hrs journey to Phuentsholing. Check-in to hotel and rest after the journey.'
       },
       {
         day: 2,
-        title: 'Thimphu Sightseeing',
-        description: 'Visit National Library, Traditional Medicine Institute, and Textile Museum. Explore Simply Bhutan museum and local handicraft shops. Visit Takin Preserve to see Bhutan\'s national animal. Evening stroll in Thimphu city.'
+        title: 'Phuentsholing to Thimphu',
+        description: 'We are crossing the Bhutan Border by road. When we reach at Border, you need to get down from the vehicle and walk towards the immigration with your original documents (Passport / Voter ID card + two passport-sized photos). Travel Insurance is Mandatory. Drive to Thimphu after immigration clearance.'
       },
       {
         day: 3,
-        title: 'Thimphu to Paro - Tiger\'s Nest Hike',
-        description: 'Drive to Paro and hike to the famous Tiger\'s Nest Monastery (Paro Taktsang). This iconic monastery perched on a cliff face is Bhutan\'s most sacred site. Visit Paro Dzong and explore Paro town. Overnight in Paro.'
+        title: 'Thimphu to Dochula & Punakha',
+        description: 'Morning drive to Dochula pass (3,080m) that heralds the most enchanting views of Bhutan. Later drive to Punakha visit PUNAKHA DZONG built strategically at the junction of PHO CHU & MO CHU River, Suspension Bridge, and Chimmi Monastery View. Overnight at hotel in Thimphu.'
       },
       {
         day: 4,
-        title: 'Departure',
-        description: 'Visit local farmhouse for traditional Bhutanese breakfast. Last-minute shopping for traditional handicrafts and souvenirs. Transfer to Paro Airport for departure with memories of the Thunder Dragon Kingdom.'
+        title: 'Thimphu & Paro',
+        description: 'Morning proceed go for local Sightseeing tour of Thimphu including visit SAARC Building (From Out Side View), National Library, Handicraft Emporium, Simply Bhutan, The National Memorial Chorten, Buddha Point, Tashichodzong (The Seat Of Government), Folk Heritage Museum, Zorig Chusum School Of 13 Traditional Arts And Crafts, Buddhit Art Gallery & Clock Tower Square. Overnight stay Paro.'
+      },
+      {
+        day: 5,
+        title: 'Paro Sightseeing',
+        description: 'In the morning drive to visit NYA MEY ZAM BRIDGE, RINPUNG DZONG, KICHU LHAKHANG, INTERNATIONAL AIRPORT, TIGER NEST VIEW, MUSEUM, and Overnight stay in Paro.'
+      },
+      {
+        day: 6,
+        title: 'Paro to Phuentsholing',
+        description: 'Return journey to Phuentsholing from paro (142.4KM - 5 hrs) after reaching stay at phuentsholing.'
+      },
+      {
+        day: 7,
+        title: 'Departure - Phuentsholing to Bagdogra',
+        description: 'Morning Phuentsholing to Bagdogra airport drop. Here your tour will end with memorable experience of Bhutan. NB: Kindly make sure your return flights are booked for only after 3 PM on the same day.'
       }
     ],
     
     quickInfo: {
-      'Duration': '4 Days 3 Nights',
+      'Duration': '6 Nights 7 Days',
       'Best Time': 'March to May, September to November',
-      'Activities': 'Monasteries, Hiking, Culture',
+      'Activities': 'Monasteries, Culture, Border Crossing',
       'Climate': 'Varies by Altitude',
       'Language': 'Dzongkha, English'
     },

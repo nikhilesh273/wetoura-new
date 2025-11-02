@@ -1,6 +1,6 @@
 // Comprehensive destination data with actual itineraries
 const destinationData = {
-  'lakshadweep-islands': {
+  'andaman-islands': {
     title: 'Andaman Islands',
     subtitle: 'Tropical Paradise',
     heroImage: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761326376/L2_w6zaw5.jpg',
@@ -1152,6 +1152,90 @@ const destinationData = {
       'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=600&q=80',
       'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?auto=format&fit=crop&w=600&q=80',
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80'
+    ]
+  },
+
+  'lakshadweep-islands': {
+    title: 'Lakshadweep Islands',
+    subtitle: 'Coral Paradise',
+    heroImage: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761326376/L2_w6zaw5.jpg',
+    description: `Experience the pristine beauty of Lakshadweep Islands with Wentoura Holidays - a coral paradise offering crystal-clear lagoons, white sandy beaches, and vibrant marine life in India's smallest union territory.`,
+    
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival Agatti - Island Welcome',
+        description: 'Warm welcome: Upon arrival at Agatti Airport, our representatives will greet you with a warm smile and assist with your luggage transfer to the hotel by an AC private vehicle. A refreshing welcome drink will be served upon arrival at the homestay, followed by check in. Island delights: Settle into your comfortable homestay, offering a haven of relaxation after your journey. Culinary journey: Savor a delicious lunch served in the comfort of your room. Agatti unveiled: Embark on a captivating half-day island sightseeing tour (starting at 4 PM). Explore the vibrant local culture, visit the fascinating Agatti Historical Museum, and witness a mesmerizing sunset at Andhan Beach.'
+      },
+      {
+        day: 2,
+        title: 'Thinnakara Island Exploration',
+        description: 'Morning bounty: Enjoy a delightful breakfast at your leisure. Thinnakara\'s allure (optional): Alternatively, explore the captivating Thinnakara Island. Discover the awe-inspiring sandbank, a Lakshadweep highlight, and soak in the island\'s serenity. And snorkeling at Shipwreck Point or Coral Garden. Evening reflection: Return to Agatti Island, enjoy a refreshing evening tea, and reminisce about the day\'s adventure.'
+      },
+      {
+        day: 3,
+        title: 'Water Sports & Kalpitti Sunset',
+        description: 'Optional activities: Choose to indulge in thrilling water sports activities like scuba diving paddleboarding, banana boating (at your own expense) to explore the vibrant marine life surrounding Agatti Island. Island gastronomy: Enjoy a satisfying lunch at your leisure. Kalpitti\'s sunset spectacle: In the afternoon, embark on a scenic 45 minute glass boat transfer to Kalpitti Island. Witness a breathtaking mesmerizing hues, creating an unforgettable spectacle. Night of memories: Return to Agatti Island for a comfortable night\'s stay.'
+      },
+      {
+        day: 4,
+        title: 'Departure',
+        description: 'Savoring breakfast: Enjoy a hearty breakfast your departure. Farewell & memories: Our representatives will ensure a smooth transfer to Agatti Airport for your onward journey. Carry with you cherished memories of your magical Lakshadweep.'
+      }
+    ],
+    
+    inclusions: [
+      'Airport transfers by AC private vehicle',
+      'Homestay accommodation',
+      'Welcome drink and meals as mentioned',
+      'Half-day Agatti sightseeing tour',
+      'Glass boat transfer to Kalpitti Island',
+      'All transfers and assistance'
+    ],
+    
+    exclusions: [
+      'Water sports activities (scuba diving, paddleboarding, banana boating)',
+      'Thinnakara Island tour (optional)',
+      'Personal expenses and tips',
+      'Travel insurance'
+    ],
+    
+    quickInfo: {
+      'Duration': '4 Days 3 Nights',
+      'Best Time': 'October to May',
+      'Activities': 'Snorkeling, Water Sports, Island Hopping',
+      'Climate': 'Tropical',
+      'Language': 'Malayalam, English'
+    },
+    
+    highlights: [
+      {
+        icon: 'fas fa-water',
+        title: 'Crystal Lagoons',
+        description: 'Pristine coral lagoons with crystal-clear waters'
+      },
+      {
+        icon: 'fas fa-fish',
+        title: 'Marine Life',
+        description: 'Vibrant coral reefs and tropical fish'
+      },
+      {
+        icon: 'fas fa-umbrella-beach',
+        title: 'Sandbanks',
+        description: 'Stunning sandbanks and white sandy beaches'
+      },
+      {
+        icon: 'fas fa-swimming-pool',
+        title: 'Water Sports',
+        description: 'Scuba diving, snorkeling, and water activities'
+      }
+    ],
+    
+    gallery: [
+      'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761326376/L2_w6zaw5.jpg',
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?auto=format&fit=crop&w=600&q=80'
     ]
   }
 };

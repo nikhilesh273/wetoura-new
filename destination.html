@@ -829,8 +829,16 @@
 
 
 
-      // Hover to show description
+      // Make destinations clickable and add hover effects
       destinationCards.forEach(card => {
+        // Add click event to redirect to detail page
+        card.addEventListener('click', () => {
+          const title = card.querySelector('.destination-title').textContent;
+          const slug = getTitleToSlugMapping(title);
+          window.location.href = `destination-detail-new.html?destination=${slug}`;
+        });
+
+        // Hover to show description
         card.addEventListener('mouseenter', () => {
           const description = card.querySelector('.destination-description');
           if (description) {
@@ -845,6 +853,64 @@
           }
         });
       });
+    });
+
+    // Function to map destination titles to data keys
+    function getTitleToSlugMapping(title) {
+      const titleMap = {
+        'Lakshadweep Island Escape': 'lakshadweep-islands',
+        'Magical Malaysia Discovery': 'malaysia-truly-asia',
+        'Thailand Tropical Escape': 'thailand-land-of-smiles',
+        'Heavenly Kashmir Retreat': 'kashmir-heaven-on-earth',
+        'Kazakhstan Explorer': 'kazakhstan-land-of-wonders',
+        'Mystical Meghalaya Adventure': 'meghalaya-land-of-clouds',
+        'Bhutan Cultural Retreat': 'bhutan-land-of-thunder-dragon',
+        'Bali Island Paradise': 'bali-island-of-gods',
+        'Vietnam Scenic Journey': 'vietnam-timeless-charm',
+        'Manali Mountain Escape': 'manali-himalayan-getaway'
+      };
+      
+      return titleMap[title] || title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/--+/g, '-').trim();
+    }
+
+    // Modal functions
+    function openEnquiryModal() {
+      document.getElementById('enquiryModal').style.display = 'block';
+      document.getElementById('modalOverlay').style.display = 'block';
+    }
+
+    function closeEnquiryModal() {
+      document.getElementById('enquiryModal').style.display = 'none';
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+
+    // Handle enquiry form submission
+    document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        destination: document.getElementById('destination').value,
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        message: document.getElementById('message').value
+      };
+      
+      console.log('Enquiry submitted:', formData);
+      alert('Thank you for your enquiry! We will contact you soon.');
+      
+      closeEnquiryModal();
+      this.reset();
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('modalOverlay').addEventListener('click', closeEnquiryModal);
+
+    // Handle escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeEnquiryModal();
+      }
     });
 
     // Hide loader

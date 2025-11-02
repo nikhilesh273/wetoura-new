@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Destination Details - Wentoura</title>
+  <link rel="icon" href="./img/logo.ico" type="image/x-icon">
+
+  <!-- Google Fonts: Playfair Display & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --charcoal: #121212;
+      --ivory: #fdfaf7;
+      --gold: #d4af37;
+      --light-gray: #f5f3f0;
+      --dark-overlay: rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ===== Loading Screen ===== */
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--light-gray);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+    }
+
+    .loader-logo {
+      max-width: 400px;
+      width: 400px;
+      height: auto;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite ease-in-out;
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+    }
+
+    #loading.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ===== Navbar (from index) ===== */
+    .navbar {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      z-index: 1000;
+    }
+
+    .logo-icon {
+      width: 200px;
+      height: auto;
+      transition: transform 0.4s ease;
+      filter: brightness(0) invert(1);
+    }
+
+    .logo-icon:hover {
+      transform: scale(1.05);
+    }
+
+    .get-in-touch {
+      background: var(--ivory);
+      color: var(--charcoal);
+      border: 1px solid var(--gold);
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .get-in-touch:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      height: 100vh;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--dark-overlay);
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 10;
+      padding: 0 20px;
+      max-width: 900px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.4;
+      margin-top: 30px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #fff;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    /* Social Icons (from index) */
+    .social-icons {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .social-icons a {
+      color: #fff;
+      font-size: 24px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
+
+    /* ===== Timeline Section ===== */
+    .timeline-section {
+      padding: 120px 5% 80px;
+      background: var(--ivory);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--charcoal);
+    }
+
+    .section-subtitle {
+      font-size: 1.3rem;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .timeline-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--gold);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content {
+      width: 45%;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .timeline-node {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      border: 6px solid var(--ivory);
+      z-index: 2;
+    }
+
+    .day-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--charcoal);
+    }
+
+    .day-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #666;
+      max-height: 100px;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .day-description.expanded {
+      max-height: 500px;
+    }
+
+    .expand-btn {
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    /* ===== Key Information Section ===== */
+    .info-section {
+      padding: 80px 5%;
+      background: var(--light-gray);
+    }
+
+    .info-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 50px;
+    }
+
+    .info-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .info-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: var(--charcoal);
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .highlight-item {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .highlight-icon {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 15px;
+    }
+
+    .highlight-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: var(--charcoal);
+    }
+
+    .quick-info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .quick-info-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .info-value {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .inclusion-list {
+      text-align: left;
+    }
+
+    .inclusion-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .inclusion-item i {
+      margin-right: 10px;
+      width: 20px;
+    }
+
+    .included {
+      color: #28a745;
+    }
+
+    .excluded {
+      color: #dc3545;
+    }
+
+    /* ===== Gallery Section ===== */
+    .gallery-section {
+      padding: 80px 5%;
+      background: var(--ivory);
+    }
+
+    .masonry-grid {
+      max-width: 1200px;
+      margin: 50px auto 0;
+      columns: 4;
+      column-gap: 20px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      padding: 80px 5%;
+      background: var(--charcoal);
+      text-align: center;
+    }
+
+    .cta-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .cta-content p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      background: var(--gold);
+      color: white;
+      padding: 20px 50px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-button:hover {
+      background: #c19b2f;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+    }
+
+    /* ===== Sticky CTA (Mobile) ===== */
+    .sticky-cta {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--gold);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      display: none;
+    }
+
+    /* ===== Footer Section (from index) ===== */
+    .footer-section {
+      width: 100%;
+      height: 500px;
+      position: relative;
+      overflow: hidden;
+      background: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5%;
+    }
+
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 5;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      color: #fff;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      width: 100%;
+    }
+
+    .footer-main-content {
+      width: 100%;
+      text-align: center;
+    }
+
+    .footer-main-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: block;
+    }
+
+    .footer-main-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .footer-copyright {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Modal Styles (from index) */
+    .wentoura-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      z-index: 2000;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1999;
+    }
+
+    .modal-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: var(--charcoal);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .submit-btn,
+    .close-btn {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn {
+      background: var(--gold);
+      color: white;
+    }
+
+    .close-btn {
+      background: #eee;
+      color: var(--charcoal);
+    }
+
+    .submit-btn:hover {
+      background: #c19b2f;
+    }
+
+    .close-btn:hover {
+      background: #ddd;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .timeline-line {
+        left: 30px;
+      }
+
+      .timeline-item {
+        flex-direction: row !important;
+        padding-left: 80px;
+      }
+
+      .timeline-content {
+        width: 100%;
+      }
+
+      .timeline-node {
+        left: 30px;
+      }
+
+      .info-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .masonry-grid {
+        columns: 2;
+      }
+
+      .sticky-cta {
+        display: block;
+      }
+
+      .social-icons {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Loading Screen -->
+  <div id="loading">
+    <img src="./img/logo.png" alt="Wentoura Logo" class="loader-logo">
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="./img/logo.png" alt="Wentoura Logo" class="logo-icon">
+    <button class="get-in-touch" onclick="openEnquiryModal()">Get in touch</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero" style="display: none;">
+    <div class="hero-content">
+      <h1 id="destination-title" class="hero-title"></h1>
+      <div id="destination-subtitle" class="hero-subtitle"></div>
+    </div>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="https://api.whatsapp.com/send?phone=919876543210&text=Hello!%20I%20have%20a%20question%20about%20your%20travel%20packages." target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section id="timeline-section" class="timeline-section" style="display: none;">
+    <div class="section-header">
+      <h2 class="section-title">Journey Itinerary</h2>
+      <p class="section-subtitle">Discover your adventure day by day with our carefully crafted travel experience</p>
+    </div>
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+      <div id="timeline-content">
+        <!-- Timeline items will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Information Section -->
+  <section id="info-section" class="info-section" style="display: none;">
+    <div class="section-header">
+      <h2 class="section-title">Trip Details</h2>
+    </div>
+    <div class="info-container">
+      <div class="info-card">
+        <h3><i class="fas fa-star"></i> Highlights</h3>
+        <div id="highlights-content" class="highlights-grid">
+          <!-- Highlights will be loaded here -->
+        </div>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-info-circle"></i> Quick Info</h3>
+        <div id="quick-info-content">
+          <!-- Quick info will be loaded here -->
+        </div>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-check-circle"></i> Inclusions</h3>
+        <div id="inclusions-content" class="inclusion-list">
+          <!-- Inclusions will be loaded here -->
+        </div>
+      </div>
+    </div>
+    <div class="info-container" style="margin-top: 30px;">
+      <div class="info-card">
+        <h3><i class="fas fa-times-circle"></i> Exclusions</h3>
+        <div id="exclusions-content" class="inclusion-list">
+          <!-- Exclusions will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery-section" class="gallery-section" style="display: none;">
+    <div class="section-header">
+      <h2 class="section-title">Gallery</h2>
+      <p class="section-subtitle">Glimpse into the beauty that awaits you</p>
+    </div>
+    <div id="masonry-grid" class="masonry-grid">
+      <!-- Gallery items will be loaded here -->
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Ready for Your Adventure?</h2>
+      <p>Let Wentoura Holidays create your perfect travel experience with personalized service and unforgettable memories.</p>
+      <button class="cta-button" onclick="openEnquiryModal()">Plan Your Trip</button>
+    </div>
+  </section>
+
+  <!-- Sticky CTA -->
+  <button class="sticky-cta" onclick="openEnquiryModal()">
+    <i class="fas fa-paper-plane"></i> Enquire Now
+  </button>
+
+  <!-- Footer -->
+  <section class="footer-section">
+    <div class="footer-content">
+      <div class="footer-main-content">
+        <h3>About</h3>
+        <p>Wentoura Holidays is your trusted travel partner, creating personalized journeys with care, comfort,
+          and unforgettable experiences.</p>
+
+        <h3>Have a Questions?</h3>
+        <p>Wentoura, Parakkottu Towers, Club Road, 7th Cross Road, Girinagar, Kadavanthra, Ernakulam-682020</p>
+        <p>+91 6238468737 , +91 9995668737</p>
+        <p>Wentoura.com</p>
+      </div>
+      <div class="footer-copyright">
+        <p>Copyright ©2025 All rights reserved | Wentoura.co</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enquiry Modal -->
+  <div id="enquiryModal" class="wentoura-modal">
+    <div class="modal-content">
+      <h2>Plan Your Trip</h2>
+      <form id="enquiryForm">
+        <div class="form-group">
+          <label>Destination</label>
+          <input type="text" id="destination" placeholder="Enter destination" required />
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="Your email" required />
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="phone" placeholder="Your phone number" required />
+        </div>
+        <div class="form-group">
+          <label>Enquiry</label>
+          <textarea id="message" placeholder="Tell us about your trip"></textarea>
+        </div>
+        <div class="modal-buttons">
+          <button type="submit" class="submit-btn">Send Enquiry</button>
+          <button type="button" class="close-btn" onclick="closeEnquiryModal()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="modalOverlay" class="modal-overlay" onclick="closeEnquiryModal()"></div>
+
+  <script src="js/destination-data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const destinationSlug = urlParams.get('destination');
+      
+      if (!destinationSlug || !destinationData[destinationSlug]) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const destination = destinationData[destinationSlug];
+      loadDestinationContent(destination);
+    });
+
+    function loadDestinationContent(destination) {
+      setTimeout(() => {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('hero').style.display = 'flex';
+        document.getElementById('timeline-section').style.display = 'block';
+        document.getElementById('info-section').style.display = 'block';
+        document.getElementById('gallery-section').style.display = 'block';
+        
+        // Update page title
+        document.getElementById('page-title').textContent = `${destination.title} - Wentoura`;
+        document.title = `${destination.title} - Wentoura`;
+        
+        // Update hero section
+        const heroSection = document.getElementById('hero');
+        heroSection.style.backgroundImage = `url('${destination.heroImage}')`;
+        document.getElementById('destination-title').textContent = destination.title;
+        document.getElementById('destination-subtitle').textContent = destination.description;
+        
+        // Update timeline
+        if (destination.itinerary) {
+          updateTimeline(destination.itinerary);
+        }
+        
+        // Update info sections
+        updateHighlights(destination.highlights);
+        updateQuickInfo(destination.quickInfo);
+        updateInclusions(destination.inclusions);
+        updateExclusions(destination.exclusions);
+        updateGallery(destination.gallery);
+        
+        // Pre-fill enquiry form
+        setTimeout(() => {
+          const destinationInput = document.getElementById('destination');
+          if (destinationInput) {
+            destinationInput.value = destination.title;
+          }
+        }, 100);
+        
+      }, 800);
+    }
+
+    function updateTimeline(itinerary) {
+      const container = document.getElementById('timeline-content');
+      let html = '';
+      
+      itinerary.forEach((day, index) => {
+        html += `
+          <div class="timeline-item">
+            <div class="timeline-content" onclick="toggleDescription(${index})">
+              <h3 class="day-title">${day.title}</h3>
+              <p class="day-description" id="desc-${index}">${day.description}</p>
+              <button class="expand-btn" id="btn-${index}">Read More</button>
+            </div>
+            <div class="timeline-node">Day ${day.day}</div>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = html;
+    }
+
+    function toggleDescription(index) {
+      const desc = document.getElementById(`desc-${index}`);
+      const btn = document.getElementById(`btn-${index}`);
+      
+      if (desc.classList.contains('expanded')) {
+        desc.classList.remove('expanded');
+        btn.textContent = 'Read More';
+      } else {
+        desc.classList.add('expanded');
+        btn.textContent = 'Read Less';
+      }
+    }
+
+    function updateHighlights(highlights) {
+      const container = document.getElementById('highlights-content');
+      let html = '';
+      
+      highlights.forEach(highlight => {
+        html += `
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <i class="${highlight.icon}"></i>
+            </div>
+            <div class="highlight-title">${highlight.title}</div>
+            <div class="highlight-description">${highlight.description}</div>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = html;
+    }
+
+    function updateQuickInfo(quickInfo) {
+      const container = document.getElementById('quick-info-content');
+      let html = '';
+      
+      for (const [label, value] of Object.entries(quickInfo)) {
+        html += `
+          <div class="quick-info-item">
+            <span class="info-label">${label}:</span>
+            <span class="info-value">${value}</span>
+          </div>
+        `;
+      }
+      
+      container.innerHTML = html;
+    }
+
+    function updateInclusions(inclusions) {
+      const container = document.getElementById('inclusions-content');
+      let html = '';
+      
+      if (inclusions && inclusions.length > 0) {
+        inclusions.forEach(item => {
+          html += `
+            <div class="inclusion-item">
+              <i class="fas fa-check included"></i>
+              <span>${item}</span>
+            </div>
+          `;
+        });
+      } else {
+        html = '<p>Inclusions information will be provided upon enquiry.</p>';
+      }
+      
+      container.innerHTML = html;
+    }
+
+    function updateExclusions(exclusions) {
+      const container = document.getElementById('exclusions-content');
+      let html = '';
+      
+      if (exclusions && exclusions.length > 0) {
+        exclusions.forEach(item => {
+          html += `
+            <div class="inclusion-item">
+              <i class="fas fa-times excluded"></i>
+              <span>${item}</span>
+            </div>
+          `;
+        });
+      } else {
+        html = '<p>Exclusions information will be provided upon enquiry.</p>';
+      }
+      
+      
+      container.innerHTML = html;
+    }
+
+    function updateGallery(gallery) {
+      const container = document.getElementById('masonry-grid');
+      let html = '';
+      
+      gallery.forEach((image, index) => {
+        html += `
+          <div class="gallery-item">
+            <img src="${image}" alt="Gallery Image ${index + 1}" loading="lazy">
+          </div>
+        `;
+      });
+      
+      container.innerHTML = html;
+    }
+
+    // Modal functions are provided by whats-app.js
+
+    // Form submission is handled by whats-app.js
+
+    // Close modal when clicking outside
+    document.getElementById('modalOverlay').addEventListener('click', closeEnquiryModal);
+
+    // Handle escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeEnquiryModal();
+      }
+    });
+  </script>
+  <script src="js/whats-app.js"></script>
+</body>
+
+</html>

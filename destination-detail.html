@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Destination Details - Wentoura</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8f9fa;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #2c3e50;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #3498db;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      height: 70vh;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-top: 80px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+    }
+
+    .hero-content {
+      text-align: center;
+      color: white;
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Content Section */
+    .content-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .main-content {
+      background: white;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 0.5rem;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .highlight-item {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      border-left: 4px solid #3498db;
+    }
+
+    .highlight-icon {
+      font-size: 2rem;
+      color: #3498db;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
+    .gallery-section {
+      margin: 3rem 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .gallery-item {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .quick-info h3 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .info-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: #555;
+    }
+
+    .info-value {
+      color: #3498db;
+      font-weight: 500;
+    }
+
+    .enquiry-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .enquiry-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .main-content {
+        padding: 2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50vh;
+      font-size: 1.2rem;
+      color: #3498db;
+    }
+
+    .loading i {
+      margin-right: 1rem;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Wentoura</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="stori.html">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div id="loading" class="loading">
+    <i class="fas fa-spinner"></i>
+    Loading destination details...
+  </div>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section" style="display: none;">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 id="destination-title" class="hero-title"></h1>
+      <p id="destination-subtitle" class="hero-subtitle"></p>
+      <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Back to Destinations
+      </a>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section id="content" class="content-section" style="display: none;">
+    <div class="content-grid">
+      <div class="main-content">
+        <h2 class="section-title">About This Destination</h2>
+        <div id="destination-description" class="description"></div>
+        
+        <div class="gallery-section">
+          <h2 class="section-title">Gallery</h2>
+          <div id="gallery-grid" class="gallery-grid"></div>
+        </div>
+
+        <div class="highlights-section">
+          <h2 class="section-title">Highlights</h2>
+          <div id="highlights-grid" class="highlights-grid"></div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="info-card">
+          <div class="quick-info">
+            <h3><i class="fas fa-info-circle"></i> Quick Info</h3>
+            <div id="quick-info-content"></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <button class="enquiry-btn" onclick="openEnquiryModal()">
+            <i class="fas fa-paper-plane"></i>
+            Plan Your Trip
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enquiry Modal (same as index.html) -->
+  <div id="enquiryModal" class="wentoura-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center;">
+    <div class="modal-content" style="background: white; padding: 2rem; border-radius: 15px; max-width: 500px; width: 90%;">
+      <h2>Plan Your Trip</h2>
+      <form id="enquiryForm">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Destination</label>
+          <input type="text" id="destination" placeholder="Enter destination" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; margin-top: 0.5rem;" />
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Name</label>
+          <input type="text" id="name" placeholder="Your name" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; margin-top: 0.5rem;" />
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="Your email" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; margin-top: 0.5rem;" />
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Phone</label>
+          <input type="tel" id="phone" placeholder="Your phone number" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; margin-top: 0.5rem;" />
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Enquiry</label>
+          <textarea id="message" placeholder="Tell us about your trip" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; margin-top: 0.5rem; height: 100px;"></textarea>
+        </div>
+        <div class="modal-buttons" style="display: flex; gap: 1rem;">
+          <button type="submit" class="submit-btn" style="flex: 1; background: #3498db; color: white; padding: 0.8rem; border: none; border-radius: 5px; cursor: pointer;">Send Enquiry</button>
+          <button type="button" class="close-btn" onclick="closeEnquiryModal()" style="flex: 1; background: #95a5a6; color: white; padding: 0.8rem; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/destination-data.js"></script>
+  <script src="js/destination-detail.js"></script>
+</body>
+</html>

@@ -1274,21 +1274,22 @@
       const container = portfolioContainer;
       const itemWidth = container.querySelector('.portfolio-item').offsetWidth + 30; // item width + gap
       
-      // Smooth continuous scroll
-      container.scrollBy({ left: itemWidth, behavior: 'smooth' });
-      
-      // Check if we've reached the end and reset to beginning
-      setTimeout(() => {
-        if (container.scrollLeft >= container.scrollWidth - container.clientWidth - 50) {
-          // Reset to beginning without animation for seamless loop
-          container.style.scrollBehavior = 'auto';
-          container.scrollLeft = 0;
-          setTimeout(() => {
-            container.style.scrollBehavior = 'smooth';
-          }, 50);
-        }
-        isAutoSliding = false;
-      }, 500);
+      // Check if we've reached the end before scrolling
+      if (container.scrollLeft >= container.scrollWidth - container.clientWidth - 10) {
+        // Reset to beginning without animation for seamless loop
+        container.style.scrollBehavior = 'auto';
+        container.scrollLeft = 0;
+        setTimeout(() => {
+          container.style.scrollBehavior = 'smooth';
+          isAutoSliding = false;
+        }, 50);
+      } else {
+        // Smooth continuous scroll
+        container.scrollBy({ left: itemWidth, behavior: 'smooth' });
+        setTimeout(() => {
+          isAutoSliding = false;
+        }, 500);
+      }
     }
     
     function startPortfolioAutoSlide() {

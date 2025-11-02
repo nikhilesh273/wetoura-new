@@ -176,15 +176,39 @@ const destinationData = {
     title: 'Kashmir – Heaven on Earth',
     subtitle: 'Mountain & Lakeside Escapes',
     heroImage: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761327584/Kashmir_1_svimqk.jpg',
-    description: `Kashmir, often called "Paradise on Earth," is a breathtaking region nestled in the Himalayas. With its snow-capped mountains, pristine lakes, lush valleys, and vibrant gardens, Kashmir offers some of the most spectacular scenery in the world.
-
-    The famous Dal Lake in Srinagar, with its floating gardens and houseboats, provides a unique accommodation experience. The Mughal gardens like Shalimar Bagh and Nishat Bagh showcase the region's rich historical heritage with their terraced lawns, cascading fountains, and colorful flower beds.
-
-    Adventure seekers can enjoy trekking in Pahalgam, skiing in Gulmarg, or simply soaking in the natural beauty of Sonamarg. The warm hospitality of Kashmiri people, combined with their rich culture and delicious cuisine including the famous Wazwan feast, makes Kashmir an unforgettable destination.`,
+    description: `Kashmir, often called "Paradise on Earth," is a breathtaking region nestled in the Himalayas. With its snow-capped mountains, pristine lakes, lush valleys, and vibrant gardens, Kashmir offers some of the most spectacular scenery in the world.`,
+    
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Srinagar',
+        description: 'Meal: Dinner Only. Upon arrival at Srinagar airport/railway station our driver will pickup & transfer to hotel. Local sight seeing at Srinagar. Have your dinner & overnight stay at hotel.'
+      },
+      {
+        day: 2,
+        title: 'Srinagar - Pahalgam',
+        description: 'Meal: Breakfast & Dinner. Later drive to Pahalgam. Known as "The valley of Shepherds or Trekker\'s Paradise", Pahalgam. En route, visit Saffron fields the beauty of the countryside and lots of rice fields. After sightseeing, Drive back to hotel. Have dinner & Overnight stay. Note: The power to go to Private vehicles is up to the Pahalgam parking. If you need to go Aru valley, Bataab valley, or Chandanwari in Pahalgam, there will be an additional travel cost will direct pay for local union cab.(Self Bargaining)'
+      },
+      {
+        day: 3,
+        title: 'Srinagar - Gulmarg',
+        description: 'Meal: Breakfast & Dinner. Wake up in morning, freshen up. Have breakfast & countryside tour towards Gulmarg. We will drive past colorful villages and rice fields that will give you an insight into the rich culture of Kashmir. Gulmarg is one of the top hill stations in India and is majorly known to have world\'s highest golf course. It\'s major attraction is Gulmarg Gondola, which is Asia\'s largest cable car project. (Gondola own cost) The 8 minutes of ropeway ride on Gulmarg Gondola will take you past colorful shepherd hutments to the lower ridge of the Apharwat Peak. Will descend to Gulmarg base after an hour. Drive back to Srinagar hotel. Have dinner, overnight stay.'
+      },
+      {
+        day: 4,
+        title: 'Srinagar - Sonamarg',
+        description: 'Meal: Breakfast & Dinner. Wake up in morning, freshen up. You can go for the day trip to Sonmarg. Sonmarg (2800Mtrs above sea level), which means "meadow of gold" has, as its backdrop, snowy mountains against a cerulean sky. In the evening return back to Srinagar. Have dinner, enjoy your stay. Note: The power to go to private vehicles is up to the Sonmarg parking.'
+      },
+      {
+        day: 5,
+        title: 'Srinagar City Tour & Departure',
+        description: 'Meal: Breakfast only. Wake up in morning, freshen up. Have breakfast. Check out hotel & proceed for visit Shikhara ride at Dal lake (1 hr), Shalimar bagh, Nishanth bagh, Pari Mahal, Shankaracharya Temple, Hazratbal Shrine. At drive to Srinagar Airport/ Srinagar railway Station at 2 PM to board for your onward journey with memorable experiences offered by Wentoura Holidays.'
+      }
+    ],
     
     quickInfo: {
       'Best Time': 'March to October',
-      'Duration': '5-8 Days',
+      'Duration': '5 Days 4 Nights',
       'Activities': 'Trekking, Skiing, Boating',
       'Climate': 'Temperate',
       'Language': 'Kashmiri, Hindi, Urdu'
@@ -513,23 +537,23 @@ const destinationData = {
       },
       {
         day: 2,
-        title: 'Water sports activity + Uluwatu temple',
+        title: 'Water Sports Activity (Banana Boat, Parasailing, Jetski) + Uluwatu Temple',
         description: 'Day 2 with Wentoura Holidays in Bali kicks off with an adrenaline-pumping morning of water sports, from banana boat rides to thrilling parasailing and jet skiing adventures. After an exhilarating start, journey to Uluwatu Temple, perched atop dramatic cliffs overlooking the Indian Ocean. Witness a mesmerizing traditional Kecak dance performance as the sun sets, creating an unforgettable fusion of culture and natural beauty.'
       },
       {
         day: 3,
-        title: 'Kintamani + Coffee Plantation + Tegenungan Waterfall + Tegalalang rice terraces',
-        description: 'On Day 3 with Wentoura Holidays in Bali, embark on a picturesque journey to Kintamani, where you\'ll be captivated by breathtaking views of Mount Batur and its serene crater lake. Explore a charming coffee plantation, savoring the flavors of freshly brewed Balinese coffee. Then marvel at the cascading beauty of Tegenungan Waterfall and the terraced landscapes of Tegalalang rice terraces.'
+        title: 'Kintamani + Coffee Plantation + Tegenungan Waterfall + Tegalalang Rice Terraces + Inter-hotel Transfer',
+        description: 'On Day 3 with Wentoura Holidays in Bali, embark on a picturesque journey to Kintamani, where you\'ll be captivated by breathtaking views of Mount Batur and its serene crater lake. Explore a charming coffee plantation, savoring the flavors of freshly brewed Balinese coffee. Then marvel at the cascading beauty of Tegenungan Waterfall and the terraced landscapes of Tegalalang rice terraces. Conclude the day with a seamless transfer to your next luxurious accommodation, ensuring every moment is filled with comfort and wonder.'
       },
       {
         day: 4,
         title: 'Lempuyang Temple Tour + Tirta Gangga',
-        description: 'Day 4 with Wentoura Holidays in Bali is a spiritual journey as you visit the iconic Lempuyang Temple, known for its "Gates of Heaven" framing Mount Agung. Experience tranquility at Tirta Gangga, the royal water palace, where intricate pools and lush gardens create a serene oasis.'
+        description: 'Day 4 with Wentoura Holidays in Bali is a spiritual journey as you visit the iconic Lempuyang Temple, known for its "Gates of Heaven" framing Mount Agung. Experience tranquility at Tirta Gangga, the royal water palace, where intricate pools and lush gardens create a serene oasis. Immerse yourself in the cultural and natural beauty of Bali, guided by Wentoura Holidays expertise every step of the way.'
       },
       {
         day: 5,
         title: 'Departure',
-        description: 'On the final day of your Bali adventure with Wentoura Holidays, bid farewell to the island paradise with cherished memories. After a leisurely breakfast, take a moment to soak in the last glimpses of Bali\'s beauty before heading to the airport for your departure.'
+        description: 'On the final day of your Bali adventure with Wentoura Holidays, bid farewell to the island paradise with cherished memories. After a leisurely breakfast, take a moment to soak in the last glimpses of Bali\'s beauty before heading to the airport for your departure. Reflect on the incredible experiences shared and look forward to future travels with Wentoura Holidays.'
       }
     ],
     

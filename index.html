@@ -1204,11 +1204,21 @@
 
     // Function to get destination slug from title
     function getDestinationSlug(title) {
-      return title.toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/--+/g, '-')
-        .trim();
+      const titleMap = {
+        'Lakshadweep Islands': 'lakshadweep-islands',
+        'Malaysia – Truly Asia': 'malaysia-truly-asia',
+        'Kashmir – Heaven on Earth': 'kashmir-heaven-on-earth',
+        'Kazakhstan – Land of Wonders': 'kazakhstan-land-of-wonders',
+        'Meghalaya – Land of Clouds': 'meghalaya-land-of-clouds',
+        'Bhutan – Land of the Thunder Dragon': 'bhutan-land-of-thunder-dragon',
+        'Thailand – Land of Smiles': 'thailand-land-of-smiles',
+        'Bali – Island of the Gods': 'bali-island-of-gods',
+        'Vietnam – Timeless Charm': 'vietnam-timeless-charm',
+        'Manali – Himalayan Getaway': 'manali-himalayan-getaway',
+        'Andaman Islands': 'andaman-islands'
+      };
+      
+      return titleMap[title] || title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/--+/g, '-').trim();
     }
 
     // Create portfolio items

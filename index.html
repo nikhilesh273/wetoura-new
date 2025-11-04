@@ -194,14 +194,14 @@
       margin-bottom: 20px;
       filter: brightness(0) invert(1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
     }
-    
+
     @media (max-width: 768px) {
       .hero-logo {
         max-width: 380px;
         width: 380px;
       }
     }
-    
+
     @media (max-width: 480px) {
       .hero-logo {
         max-width: 300px;
@@ -834,7 +834,7 @@
         height: 350px;
         min-width: 280px;
       }
-      
+
       .portfolio-image {
         object-fit: cover;
         object-position: center;
@@ -943,8 +943,10 @@
     <!-- <div class="footer-text">Creating adventures in Melbourne / Bright</div> -->
     <div class="social-icons">
       <a href="https://www.instagram.com/wentouraholidays/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://api.whatsapp.com/send?phone=919876543210&text=Hello!%20I%20have%20a%20question%20about%20your%20travel%20packages." target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://www.facebook.com/share/1MXUzidNvG/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://api.whatsapp.com/send?phone=919876543210&text=Hello!%20I%20have%20a%20question%20about%20your%20travel%20packages."
+        target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.facebook.com/share/1MXUzidNvG/?mibextid=wwXIfr" target="_blank"><i
+          class="fab fa-facebook-f"></i></a>
 
     </div>
   </section>
@@ -1031,9 +1033,9 @@
           alt="Coastal Escape" class="story-image">
         <div class="eye-icon"><i class="far fa-eye"></i></div>
         <div class="story-overlay">
-            <h3 class="story-title">Desert Dreams</h3>
+          <h3 class="story-title">Desert Dreams</h3>
           <p class="story-category">Golden Dunes</p>
-        
+
         </div>
       </div>
       <div class="story-item">
@@ -1064,7 +1066,8 @@
         </div>
       </div>
       <div class="story-item">
-        <img src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1762238471/11ACDDDF-ED9A-4113-98E2-EFEFCF6340A6_dy0wnb.jpg"
+        <img
+          src="https://res.cloudinary.com/dqm2v4a74/image/upload/v1762238471/11ACDDDF-ED9A-4113-98E2-EFEFCF6340A6_dy0wnb.jpg"
           alt="Desert Dreams" class="story-image">
         <div class="eye-icon"><i class="far fa-eye"></i></div>
         <div class="story-overlay">
@@ -1187,17 +1190,27 @@
         category: "Mountains, Adventure & Nature"
       },
       {
-        image: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761326376/L2_w6zaw5.jpg',
+        image: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1762241557/Andaman_and_Nicobar_India_xg8cdt.jpg',
         title: 'Andaman Islands',
-        category: 'Tropical Paradise'
+        category: 'Tropical Beaches & Coral Reefs'
+      },
+      {
+        image: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1762241557/download_yvxffu.jpg',
+        title: 'Kerala - God\'s Own Country',
+        category: 'Houseboats & Serenity'
+      },
+      {
+        image: 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1762241559/10_BEST_Things_to_do_in_Krabi_Thailand_-____drsash.jpg',
+        title: 'Phuket & Krabi',
+        category: 'Island Escapes & Water Adventures'
       }
+
 
     ];
 
     const heroImages = [
       'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388169/heros_5_zg78kw.jpg',
       'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388193/heros_6_lo6dgp.jpg',
-      // 'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388206/heros_7_tojvx1.jpg',
       'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388164/heros_3_kxo5nc.jpg',
       'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388146/heros_8_ac2huw.jpg',
       'https://res.cloudinary.com/dqm2v4a74/image/upload/v1761388156/heros_1_oqddzg.jpg',
@@ -1222,9 +1235,11 @@
         'Bali – Island of the Gods': 'bali-island-of-gods',
         'Vietnam – Timeless Charm': 'vietnam-timeless-charm',
         'Manali – Himalayan Getaway': 'manali-himalayan-getaway',
-        'Andaman Islands': 'andaman-islands'
+        'Andaman Islands': 'andaman-islands',
+        'Kerala - God\'s Own Country': 'kerala-gods-own-country',
+        'Phuket & Krabi': 'phuket-krabi-islands'
       };
-      
+
       return titleMap[title] || title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/--+/g, '-').trim();
     }
 
@@ -1235,13 +1250,13 @@
         const portfolioItem = document.createElement('div');
         portfolioItem.className = 'portfolio-item';
         portfolioItem.style.cursor = 'pointer';
-        
+
         // Add click event to redirect to destination detail page
         const destinationSlug = getDestinationSlug(item.title);
         portfolioItem.addEventListener('click', () => {
           window.location.href = `destination-detail-new.html?destination=${destinationSlug}`;
         });
-        
+
         portfolioItem.innerHTML = `
           <img src="${item.image}" alt="${item.title}" class="portfolio-image">
           <div class="portfolio-overlay">
@@ -1267,14 +1282,14 @@
     // Auto-slide portfolio with continuous loop
     let portfolioAutoSlide;
     let isAutoSliding = false;
-    
+
     function smoothAutoSlide() {
       if (isAutoSliding) return;
       isAutoSliding = true;
-      
+
       const container = portfolioContainer;
       const itemWidth = container.querySelector('.portfolio-item').offsetWidth + 30; // item width + gap
-      
+
       // Check if we've reached the end before scrolling
       if (container.scrollLeft >= container.scrollWidth - container.clientWidth - 10) {
         // Reset to beginning without animation for seamless loop
@@ -1292,18 +1307,18 @@
         }, 500);
       }
     }
-    
+
     function startPortfolioAutoSlide() {
       portfolioAutoSlide = setInterval(smoothAutoSlide, 3000);
     }
-    
+
     function stopPortfolioAutoSlide() {
       clearInterval(portfolioAutoSlide);
     }
-    
+
     // Start auto-slide after page load
     setTimeout(startPortfolioAutoSlide, 2000);
-    
+
     // Pause auto-slide on hover
     portfolioContainer.addEventListener('mouseenter', stopPortfolioAutoSlide);
     portfolioContainer.addEventListener('mouseleave', startPortfolioAutoSlide);
@@ -1337,7 +1352,7 @@
     document.getElementById('modalOverlay').addEventListener('click', closeEnquiryModal);
 
     // Handle escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         closeEnquiryModal();
       }

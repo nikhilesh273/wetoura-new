@@ -338,7 +338,8 @@
     }
 
     .day-description.expanded {
-      max-height: 500px;
+      max-height: none;
+      overflow: visible;
     }
 
     .expand-btn {
@@ -349,6 +350,12 @@
       cursor: pointer;
       margin-top: 10px;
       font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .expand-btn:hover {
+      color: #c19b2f;
+      transform: translateY(-1px);
     }
 
     /* ===== Key Information Section ===== */
@@ -720,10 +727,20 @@
 
       .timeline-content {
         width: 100%;
+        padding: 25px;
       }
 
       .timeline-node {
         left: 30px;
+      }
+
+      .day-description {
+        max-height: 80px;
+      }
+
+      .day-description.expanded {
+        max-height: none;
+        overflow: visible;
       }
 
       .info-container {
@@ -985,6 +1002,7 @@
     function toggleDescription(index) {
       const desc = document.getElementById(`desc-${index}`);
       const btn = document.getElementById(`btn-${index}`);
+      const timelineItem = desc.closest('.timeline-item');
       
       if (desc.classList.contains('expanded')) {
         desc.classList.remove('expanded');
@@ -992,6 +1010,16 @@
       } else {
         desc.classList.add('expanded');
         btn.textContent = 'Read Less';
+        
+        // Smooth scroll to the timeline item on mobile
+        if (window.innerWidth <= 768) {
+          setTimeout(() => {
+            timelineItem.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }, 100);
+        }
       }
     }
 

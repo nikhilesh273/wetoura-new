@@ -1,30 +1,30 @@
 // Comprehensive destination data with actual itineraries
 const destinationData = {
   "andaman-islands": {
-    title: "Andaman Islands",
+    title: "Andaman Islands (4 Days & 3 Nights)",
     subtitle: "Tropical Paradise",
     heroImage:
       "https://res.cloudinary.com/dqm2v4a74/image/upload/v1762254136/download_12_v9oyn0.jpg",
-    description: `Explore the pristine beauty of Andaman Islands with Wentoura Holidays - a tropical paradise offering crystal-clear waters, pristine beaches, and rich historical heritage.`,
+    description: `Explore the pristine beauty of Andaman Islands with Wentoura Holidays - a tropical paradise offering crystal-clear waters, pristine beaches, and rich historical heritage. Experience the perfect blend of history, nature, and adventure.`,
 
     itinerary: [
       {
         day: 1,
-        title: "Arrival Port Blair - Cellular Jail",
+        title: "Arrival Port Blair - Cellular Jail & Light Show",
         description:
-          "Board your flight from your respective hub and arrive in Port Blair. Our representative will meet you and transfer you to your hotel. In the evening, visit to Cellular Jail & Corbyns Cove Beach - a serene beach set in picturesque backgrounds of lush green coconut palms and pleasant sea. Later, witness the Light and Sound show at Cellular Jail the saga of countless martyrs of the Indian independence struggle who laid down their lives.",
+          "Board your flight from your respective hub and arrive in Port Blair. Our representative will meet you and transfer you to your hotel. In the evening, visit to Cellular Jail & Corbyns Cove Beach - a serene beach set in picturesque backgrounds of lush green coconut palms and pleasant sea. Later, witness the Light and Sound show at Cellular Jail the saga of countless martyrs of the Indian independence struggle who laid down their lives. The show, conducted in the premises of Cellular Jail, gives us a brief idea about the happenings in the jail prior to Independence. Return to the hotel in the evening. Overnight stay at Hotel at Port Blair.",
       },
       {
         day: 2,
-        title: "Havelock Island - Radhanagar Beach",
+        title: "Havelock Island - Radhanagar & Elephanta Beach",
         description:
           "In the morning, you will be escorted to the Harbor to take you to Havelock Island by a private cruise and after arrival at Havelock visit Radhanagar Beach and ELEPHANTA Beach. (Stay at HAVELOCK IN M J RESORT / SIMILAR)",
       },
       {
         day: 3,
-        title: "Return to Port Blair - Sightseeing",
+        title: "Return to Port Blair - Museums & Shopping",
         description:
-          "After breakfast travel to Port Blair in a private cruise and after reaching here visit, museums, mill Marina park and evening for shopping (Stay at G KM GRAND HOTEL at PORT BLAIR / similar)",
+          "After breakfast travel to Port Blair in a private cruise and after reaching here visit, museums, mill Marina park and evening for shopping (Stay at G K M GRAND HOTEL at PORT BLAIR / similar)",
       },
       {
         day: 4,
@@ -36,8 +36,15 @@ const destinationData = {
 
     inclusions: [
       "Airport transfer by private A/C as per itinerary",
-      "Room at Port Blair, Havelock",
+      "3 nights accommodation (2 nights Port Blair + 1 night Havelock)",
+      "Room at Port Blair (G K M Grand Hotel or similar)",
+      "Room at Havelock (M J Resort or similar)",
       "Sightseeing and all transfers in private A/C as per the itinerary",
+      "Private cruise to Havelock Island (both ways)",
+      "Cellular Jail visit and Light & Sound show",
+      "Corbyns Cove Beach visit",
+      "Radhanagar Beach and Elephanta Beach visits",
+      "Museums and Marina Park visits",
       "All entry permits / tickets, ferry tickets",
       "Forest area permits wherever applicable",
       "Assistance at all arrival and departure points",
@@ -45,15 +52,17 @@ const destinationData = {
 
     exclusions: [
       "All kinds of personal expenses such as tips, laundry, telephone bills and beverages",
-      "It also does not include any meals unless and otherwise specifically mentioned",
+      "All meals (breakfast, lunch, dinner)",
       "Optional, suggested or unspecified activities",
+      "Water sports activities",
       "Camera fee (still or video)",
+      "Travel insurance",
     ],
 
     quickInfo: {
       Duration: "4 Days 3 Nights",
       "Best Time": "October to May",
-      Activities: "Beaches, History, Water Sports",
+      Activities: "Beaches, History, Water Sports, Island Hopping",
       Climate: "Tropical",
       Language: "Hindi, English, Bengali",
     },
@@ -62,7 +71,7 @@ const destinationData = {
       {
         icon: "fas fa-landmark",
         title: "Cellular Jail",
-        description: "Historic prison with Light & Sound show",
+        description: "Historic prison with Light & Sound show experience",
       },
       {
         icon: "fas fa-umbrella-beach",
@@ -72,7 +81,7 @@ const destinationData = {
       {
         icon: "fas fa-ship",
         title: "Island Hopping",
-        description: "Private cruise to Havelock Island",
+        description: "Private cruise between Port Blair and Havelock",
       },
       {
         icon: "fas fa-water",
@@ -840,30 +849,30 @@ const destinationData = {
   },
 
   "phuket-krabi-islands": {
-    title: "Phuket & Krabi Islands",
+    title: "Phuket & Krabi (5 Days & 4 Nights)",
     subtitle: "Tropical Beach Paradise",
     heroImage:
       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
-    description: `Explore the stunning islands of Phuket & Krabi with Wentoura Holidays - Thailand's most beautiful beach destinations offering crystal-clear waters, limestone cliffs, and tropical paradise.`,
+    description: `Explore the stunning islands of Phuket & Krabi with Wentoura Holidays - Thailand's most beautiful beach destinations offering crystal-clear waters, limestone cliffs, and tropical paradise. Experience island hopping, pristine beaches, and unforgettable adventures.`,
 
     itinerary: [
       {
         day: 1,
-        title: "Arrival Phuket - City Tour",
+        title: "Arrival at HKT Airport - Phuket City Tour",
         description:
           "Arrival at HKT Airport. Pick up from EXIT GATE. Phuket City tour - Gems gallery- Phuket Old Town- Tiger Park - Karon View point - Wat Chalong Temple. Check in at Phuket Hotel. Night stay at Hotel.",
       },
       {
         day: 2,
-        title: "Phi Phi Island Tour",
+        title: "Phi Phi Island Tour by Speed Boat",
         description:
           "Breakfast from Hotel. 07:30 am Transfer to Phi Phi Island tour by speed boat. Night stay at Hotel.",
       },
       {
         day: 3,
-        title: "James Bond Island - Transfer to Krabi",
+        title: "James Bond Island + Transfer to Krabi",
         description:
-          "Breakfast from Hotel. 08:00 am Check out from Phuket Hotel. Keep luggage at hotel lobby. 08:30 am James Bond Island + Ko Panyi + Ko Khao Phing Kan trip by longtail boat with Lunch from Phuket included national park fee & Sea canoe (SIC). Return back to hotel and take luggage. 06.00 pm transfer to krabi hotel. Check in at Krabi Hotel.",
+          "Breakfast from Hotel. 08:00 am Check out from Phuket Hotel. Keep luggage at hotel lobby. 08:30 am James Bond Island + Ko Panyi + Ko Khao Phing Kan trip by longtail boat with Lunch 🚤 from Phuket included national park fee & Sea canoe (SIC). Return back to hotel and take luggage. 06.00 pm transfer to krabi hotel. Check in at Krabi Hotel. Night stay at Hotel.",
       },
       {
         day: 4,
@@ -873,7 +882,7 @@ const destinationData = {
       },
       {
         day: 5,
-        title: "Departure",
+        title: "Departure from KBV Airport",
         description:
           "Breakfast from Hotel. 12:00 pm Check out from Krabi Hotel. Transfer to KBV Airport. Departure.",
       },
@@ -881,19 +890,21 @@ const destinationData = {
 
     inclusions: [
       "04 Breakfasts at hotels",
-      "04 Nights stay at hotels",
+      "04 Nights stay at hotels (2 nights Phuket + 2 nights Krabi)",
       "Phuket City Tour (06 hours, Pvt) – Gems Gallery, Phuket Old Town, Tiger Park (transfer only), Karon View Point, Wat Chalong Temple",
       "Phi Phi Island Tour by Speedboat (SIC) – with lunch, snorkeling & national park fees",
+      "James Bond Island + Ko Panyi + Ko Khao Phing Kan trip by longtail boat with Lunch & Sea canoe (SIC)",
       "Phuket Hotel → Krabi Hotel by road (Pvt)",
-      "Krabi Rainforest Tour (Emerald Pool, Hot Spring) – no lunch, en route to Krabi Hotel",
       "04 Island Tour by longtail boat (SIC) – with lunch & national park fees",
       "All airport transfers on private luxury basis",
+      "National park fees and entrance tickets as mentioned",
     ],
 
     exclusions: [
-      "Other meals not mentioned",
+      "Other meals not mentioned in inclusions",
       "Personal expenses, tips, optional activities (e.g., Sea Walker)",
-      "Other internal transfer",
+      "Tiger Park entry fees and photo charges (direct payment as per tiger size)",
+      "Water sports activities (direct payment on spot)",
       "Any cost arising due to natural calamities like high rainfall, low tide, weather warning, light storm, road blockage to be borne directly by the customer on the spot",
       "Any service that are not mentioned in inclusions",
     ],
@@ -901,7 +912,7 @@ const destinationData = {
     quickInfo: {
       Duration: "5 Days 4 Nights",
       "Best Time": "November to April",
-      Activities: "Island Hopping, Snorkeling, Beaches",
+      Activities: "Island Hopping, Snorkeling, Beaches, Sea Canoe",
       Climate: "Tropical",
       Language: "Thai, English",
     },
@@ -910,22 +921,22 @@ const destinationData = {
       {
         icon: "fas fa-ship",
         title: "Phi Phi Islands",
-        description: "Speedboat tour to pristine tropical islands",
+        description: "Speedboat tour to pristine tropical islands with snorkeling",
       },
       {
         icon: "fas fa-mountain",
         title: "James Bond Island",
-        description: "Famous limestone karst from 007 movie",
+        description: "Famous limestone karst Ko Khao Phing Kan from 007 movie",
       },
       {
         icon: "fas fa-umbrella-beach",
-        title: "4 Island Tour",
-        description: "Krabi's most beautiful beaches and islands",
+        title: "4 Island Tour Krabi",
+        description: "Krabi's most beautiful beaches and crystal-clear waters",
       },
       {
         icon: "fas fa-place-of-worship",
         title: "Wat Chalong Temple",
-        description: "Phuket's most important Buddhist temple",
+        description: "Phuket's most important Buddhist temple complex",
       },
     ],
 
@@ -933,15 +944,16 @@ const destinationData = {
       "https://res.cloudinary.com/dqm2v4a74/image/upload/v1762255080/Follow_my_Instagram_tqlqim.jpg",
       "https://res.cloudinary.com/dqm2v4a74/image/upload/v1762255079/download_13_laweer.jpg",
       "https://res.cloudinary.com/dqm2v4a74/image/upload/v1762255079/How_to_Spend_FOUR_DAYS_in_Phuket_Thailand__4-Day____v6pi2f.jpg",
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80",
     ],
   },
 
   "kerala-gods-own-country": {
-    title: "Kerala - God's Own Country",
-    subtitle: "Backwaters, Hills & Spices",
+    title: "Kerala - God's Own Country (6 Days & 5 Nights)",
+    subtitle: "Kochi-Munnar-Thekkady-Alappuzha",
     heroImage:
       "https://res.cloudinary.com/dqm2v4a74/image/upload/v1762254781/Nature_s_masterpiece_at_sunrise____Sunrise__NatureLovers__GreenMeadows__PalmTrees__MorningMagic__NaturePhotography__PeacefulMorning__SunriseScenery__NaturalBeauty__LandscapeLovers__TranquilView__SereneSunrise__upo9nl.jpg",
-    description: `Experience the enchanting beauty of Kerala with Wentoura Holidays - God's Own Country offers a perfect blend of serene backwaters, misty hill stations, and rich cultural heritage.`,
+    description: `Experience the enchanting beauty of Kerala with Wentoura Holidays - God's Own Country offers a perfect blend of serene backwaters, misty hill stations, and rich cultural heritage. Journey through Kochi's historic charm, Munnar's tea gardens, Thekkady's wildlife, and Alappuzha's backwaters.`,
 
     itinerary: [
       {
@@ -954,51 +966,63 @@ const destinationData = {
         day: 2,
         title: "Kochi to Munnar via Athirappilly Falls",
         description:
-          "Morning: Breakfast at hotel, then depart to Athirappilly Waterfalls (approx. 2 hrs drive). Explore the majestic falls and surrounding forest area. Afternoon: Proceed to Munnar (approx. 5–6 hrs drive). Enjoy the scenic mountain drive with tea gardens and waterfalls en route. Evening: Check-in at resort, enjoy resort activities (campfire, games, nature walk, etc.).",
+          "Morning: Breakfast at hotel, then depart to Athirappilly Waterfalls (approx. 2 hrs drive). Explore the majestic falls and surrounding forest area. Afternoon: Proceed to Munnar (approx. 5–6 hrs drive). Enjoy the scenic mountain drive with tea gardens and waterfalls en route. Evening: Check-in at resort, enjoy resort activities (campfire, games, nature walk, etc.). Overnight Stay: Resort in Munnar.",
       },
       {
         day: 3,
         title: "Munnar Sightseeing - Kolukkumalai Sunrise",
         description:
-          "Early Morning: Start at 3:00 AM for Kolukkumalai Sunrise Jeep Safari (world's highest tea plantation). Witness the breathtaking sunrise above the clouds. Morning: Return to resort, freshen up, and have breakfast. Midday: Visit Idukki Dam one of the highest arch dams in Asia. Afternoon Sightseeing: Explore Munnar Hill Station highlights: Mattupetty Dam, Echo Point, Tea Museum, and Rose Garden.",
+          "Early Morning: Start at 3:00 AM for Kolukkumalai Sunrise Jeep Safari (world's highest tea plantation). Witness the breathtaking sunrise above the clouds. Morning: Return to resort, freshen up, and have breakfast. Midday: Visit Idukki Dam – one of the highest arch dams in Asia. Afternoon Sightseeing: Explore Munnar Hill Station highlights: Mattupetty Dam, Echo Point, Tea Museum, and Rose Garden. Evening: Leisure time or visit local markets. Overnight Stay: Resort in Munnar.",
       },
       {
         day: 4,
         title: "Munnar to Thekkady - Periyar Wildlife",
         description:
-          "Morning: Check out after breakfast and head to Thekkady (approx. 3-4 hrs). Afternoon: Visit Periyar Tiger Reserve. Enjoy boating on Periyar Lake, spice garden visit, optional elephant ride or Kalaripayattu martial arts show. Evening: Check-in to hotel/resort.",
+          "Morning: Check out after breakfast and head to Thekkady (approx. 3–4 hrs). Afternoon: Visit Periyar Tiger Reserve. Enjoy boating on Periyar Lake, spice garden visit, optional elephant ride or Kalaripayattu martial arts show. Evening: Check-in to hotel/resort. Overnight Stay: Hotel in Thekkady.",
       },
       {
         day: 5,
         title: "Thekkady to Alappuzha - Houseboat Experience",
         description:
-          "Morning: Drive to Alappuzha (4-5 hrs). Midday: Check-in to a private houseboat. Welcome drink, followed by lunch onboard. Enjoy cruising through backwaters, paddy fields, and villages. Optional Activities: Kayaking, fishing, village walk. Evening: Sunset view, candlelight dinner (on request).",
+          "Morning: Drive to Alappuzha (4–5 hrs). Midday: Check-in to a private houseboat. Welcome drink, followed by lunch onboard. Enjoy cruising through backwaters, paddy fields, and villages. Optional Activities: Kayaking, fishing, village walk. Evening: Sunset view, candlelight dinner (on request). Overnight Stay: Onboard houseboat.",
       },
       {
         day: 6,
         title: "Departure from Kochi",
         description:
-          "Morning: Breakfast onboard and checkout from houseboat by 9:00 AM. Drive to Kochi Airport (approx. 1.5-2 hrs). Trip Ends with wonderful memories of God's Own Country.",
+          "Morning: Breakfast onboard and checkout from houseboat by 9:00 AM. Drive to Kochi Airport (approx. 1.5–2 hrs). Trip Ends ✈️ with wonderful memories of God's Own Country.",
       },
     ],
 
     inclusions: [
-      "Guide - (English, Hindi, Malayalam)",
-      "All entry tickets",
-      "Taxi fare",
-      "Breakfast",
+      "Pickup from Kochi International Airport",
+      "All transfers by private vehicle",
+      "5 nights accommodation (1 night Kochi + 2 nights Munnar + 1 night Thekkady + 1 night houseboat)",
+      "Daily breakfast at hotels and onboard houseboat",
+      "Fort Kochi sightseeing tour",
+      "Sunset/harbor cruise in Kochi",
+      "Athirappilly Waterfalls visit",
+      "Kolukkumalai Sunrise Jeep Safari",
+      "Munnar sightseeing (Mattupetty Dam, Echo Point, Tea Museum, Rose Garden)",
+      "Idukki Dam visit",
+      "Periyar Tiger Reserve boating",
+      "Spice garden visit in Thekkady",
+      "Private houseboat with lunch and dinner",
+      "All entrance fees and permits",
     ],
 
     exclusions: [
-      "Other internal transfer",
+      "Lunch and dinner (except on houseboat)",
+      "Optional activities (elephant ride, Kalaripayattu show, kayaking, fishing)",
+      "Personal expenses and tips",
       "Any cost arising due to natural calamities like high rainfall, low tide, weather warning, light storm, road blockage to be borne directly by the customer on the spot",
-      "Any service that are not mentioned",
+      "Any service not mentioned in inclusions",
     ],
 
     quickInfo: {
       Duration: "6 Days 5 Nights",
       "Best Time": "October to March",
-      Activities: "Backwaters, Wildlife, Tea Gardens",
+      Activities: "Backwaters, Wildlife, Tea Gardens, Waterfalls",
       Climate: "Tropical",
       Language: "Malayalam, English, Hindi",
     },
@@ -1007,22 +1031,22 @@ const destinationData = {
       {
         icon: "fas fa-ship",
         title: "Backwater Cruise",
-        description: "Private houseboat experience in Alappuzha",
+        description: "Private houseboat experience in Alappuzha backwaters",
       },
       {
         icon: "fas fa-mountain",
-        title: "Hill Stations",
-        description: "Munnar tea gardens and mountain views",
+        title: "Kolukkumalai Sunrise",
+        description: "World's highest tea plantation sunrise safari",
       },
       {
         icon: "fas fa-paw",
-        title: "Wildlife Safari",
-        description: "Periyar Tiger Reserve boat safari",
+        title: "Periyar Wildlife",
+        description: "Tiger Reserve boating and spice gardens",
       },
       {
-        icon: "fas fa-leaf",
-        title: "Spice Gardens",
-        description: "Aromatic spice plantations in Thekkady",
+        icon: "fas fa-tint",
+        title: "Athirappilly Falls",
+        description: "Majestic waterfalls and forest exploration",
       },
     ],
 

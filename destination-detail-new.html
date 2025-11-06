@@ -8,14 +8,21 @@
   <link rel="icon" href="./img/logo.ico" type="image/x-icon">
 
   <!-- Google Fonts: Playfair Display & Montserrat -->
+  <!-- Preconnect to external domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <!-- Optimized font loading -->
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome with async loading -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
   <style>
     :root {
@@ -487,6 +494,15 @@
       display: block;
       object-fit: cover;
       border-radius: 15px;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item img[data-src] {
+      opacity: 0;
+    }
+
+    .gallery-item img.loaded {
+      opacity: 1;
     }
 
     /* ===== CTA Section ===== */
@@ -929,6 +945,43 @@
 
   <script src="js/destination-data.js"></script>
   <script>
+    // Lazy loading implementation
+    function initLazyLoading() {
+      const lazyImages = document.querySelectorAll('.lazy-image');
+      
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src;
+              img.classList.add('loaded');
+              img.removeAttribute('data-src');
+              imageObserver.unobserve(img);
+            }
+          });
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+      } else {
+        // Fallback for older browsers
+        lazyImages.forEach(img => {
+          img.src = img.dataset.src;
+          img.classList.add('loaded');
+        });
+      }
+    }
+
+    // Preload critical images
+    function preloadCriticalImages(destination) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = destination.heroImage;
+      document.head.appendChild(link);
+    }
+
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       const destinationSlug = urlParams.get('destination');
@@ -943,11 +996,13 @@
     });
 
     function loadDestinationContent(destination) {
+      // Preload critical images
+      preloadCriticalImages(destination);
+      
       setTimeout(() => {
         document.getElementById('loading').classList.add('hidden');
         document.getElementById('hero').style.display = 'flex';
         document.getElementById('timeline-section').style.display = 'block';
-
         document.getElementById('gallery-section').style.display = 'block';
         
         // Update page title
@@ -965,18 +1020,15 @@
           updateTimeline(destination.itinerary);
         }
         
-
         updateGallery(destination.gallery);
         
         // Pre-fill enquiry form
-        setTimeout(() => {
-          const destinationInput = document.getElementById('destination');
-          if (destinationInput) {
-            destinationInput.value = destination.title;
-          }
-        }, 100);
+        const destinationInput = document.getElementById('destination');
+        if (destinationInput) {
+          destinationInput.value = destination.title;
+        }
         
-      }, 800);
+      }, 300);
     }
 
     function updateTimeline(itinerary) {
@@ -1106,12 +1158,15 @@
       gallery.forEach((image, index) => {
         html += `
           <div class="gallery-item">
-            <img src="${image}" alt="Gallery Image ${index + 1}" loading="lazy">
+            <img data-src="${image}" alt="Gallery Image ${index + 1}" loading="lazy" class="lazy-image">
           </div>
         `;
       });
       
       container.innerHTML = html;
+      
+      // Initialize lazy loading
+      initLazyLoading();
     }
 
     // Modal functions are provided by whats-app.js

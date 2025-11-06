@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="page-title">Destination Details - Wentoura</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Performance optimizations -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
   <style>
     * {
       margin: 0;
@@ -227,6 +231,15 @@
       width: 100%;
       height: 250px;
       object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item img[data-src] {
+      opacity: 0;
+    }
+
+    .gallery-item img.loaded {
+      opacity: 1;
     }
 
     .quick-info h3 {

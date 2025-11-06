@@ -15,6 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadDestinationContent(destination) {
+    // Preload hero image
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = destination.heroImage;
+    document.head.appendChild(link);
+    
     // Hide loading and show content
     setTimeout(() => {
         document.getElementById('loading').style.display = 'none';
@@ -49,7 +56,7 @@ function loadDestinationContent(destination) {
             destinationInput.value = destination.title;
         }
         
-    }, 800);
+    }, 300);
 }
 
 function updateQuickInfo(quickInfo) {
@@ -94,12 +101,39 @@ function updateGallery(gallery) {
     gallery.forEach((image, index) => {
         html += `
             <div class="gallery-item">
-                <img src="${image}" alt="Gallery Image ${index + 1}" loading="lazy">
+                <img data-src="${image}" alt="Gallery Image ${index + 1}" loading="lazy" class="lazy-image">
             </div>
         `;
     });
     
     container.innerHTML = html;
+    initLazyLoading();
+}
+
+// Lazy loading implementation
+function initLazyLoading() {
+    const lazyImages = document.querySelectorAll('.lazy-image');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+    } else {
+        lazyImages.forEach(img => {
+            img.src = img.dataset.src;
+            img.classList.add('loaded');
+        });
+    }
 }
 
 // Modal functions

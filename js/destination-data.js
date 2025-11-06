@@ -1,7 +1,7 @@
 // Comprehensive destination data with actual itineraries
 const destinationData = {
   "andaman-islands": {
-    title: "Andaman Islands (4 Days & 3 Nights)",
+    title: "Andaman Islands",
     subtitle: "Tropical Paradise",
     heroImage:
       "https://res.cloudinary.com/dqm2v4a74/image/upload/v1762254136/download_12_v9oyn0.jpg",
@@ -849,7 +849,7 @@ const destinationData = {
   },
 
   "phuket-krabi-islands": {
-    title: "Phuket & Krabi (5 Days & 4 Nights)",
+    title: "Phuket & Krabi",
     subtitle: "Tropical Beach Paradise",
     heroImage:
       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
@@ -949,7 +949,7 @@ const destinationData = {
   },
 
   "kerala-gods-own-country": {
-    title: "Kerala - God's Own Country (6 Days & 5 Nights)",
+    title: "Kerala - God's Own Country",
     subtitle: "Kochi-Munnar-Thekkady-Alappuzha",
     heroImage:
       "https://res.cloudinary.com/dqm2v4a74/image/upload/v1762254781/Nature_s_masterpiece_at_sunrise____Sunrise__NatureLovers__GreenMeadows__PalmTrees__MorningMagic__NaturePhotography__PeacefulMorning__SunriseScenery__NaturalBeauty__LandscapeLovers__TranquilView__SereneSunrise__upo9nl.jpg",

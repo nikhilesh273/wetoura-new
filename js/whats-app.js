@@ -7,7 +7,7 @@
 
 /* ---------------- CONFIGURATION ---------------- */
 const WHATSAPP_NUMBERS = {
-  primary: '919876543210', // ← Replace with your live number (digits only, no +)
+  primary: '9995668737', // ← Replace with your live number (digits only, no +)
   secondary: '' // Optional
 };
 
